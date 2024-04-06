@@ -3,13 +3,9 @@ const { resolve } = require("node:path");
 const { readJSONSync } = require("fs-extra");
 const semver = require("semver");
 
-const jestRules = require("./overrides/jest.js");
 const jsonOverride = require("./overrides/json.js");
 const reactOverride = require("./overrides/react.js");
 const tsOverride = require("./overrides/typescript.js");
-const logicRules = require("./rules/logic.js");
-const styleRules = require("./rules/styles.js");
-const suggestionRules = require("./rules/suggestions.js");
 
 /**
  * @type {import("pkg-types").PackageJson}
@@ -37,7 +33,7 @@ const isESModule = package_.type === "module";
 /**
  * @type {import("eslint").Linter.ConfigOverride[]}
  */
-const overrides = [jsonOverride, jestRules];
+const overrides = [jsonOverride];
 
 if (isUsingTypescript) {
   overrides.push(tsOverride);
@@ -87,6 +83,10 @@ const config = {
    * import enabled by default, prettier enabled when project has prettier devDependency
    */
   extends: [
+    "./rules/logic",
+    "./rules/styles",
+    "./rules/suggestions",
+    "./rules/deprecated",
     "plugin:import/recommended",
     "plugin:compat/recommended",
     "plugin:n/recommended",
@@ -95,9 +95,6 @@ const config = {
     isUsingPrettier ? "plugin:prettier/recommended" : "",
   ].filter(Boolean),
   rules: {
-    ...logicRules.rules,
-    ...suggestionRules.rules,
-    ...(isUsingPrettier ? {} : styleRules.rules),
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "import/first": "error",
