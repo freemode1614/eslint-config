@@ -35,7 +35,12 @@
     "vitest": "^0.34.6"
   },
   "peerDependencies": {
-    "eslint": ">=8.0"
+    "eslint": ">=7"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.24.1",

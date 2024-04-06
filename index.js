@@ -71,19 +71,18 @@ const config = {
   },
   parser: isUsingTypescript ? "@typescript-eslint/parser" : undefined,
   parserOptions: {
-    // set to "script" (default) or "module" if your code is in ECMAScript modules.
-    sourceType: isESModule ? "module" : "script",
-    // set "latest" to use the most recently supported version.
+    sourceType: isESModule ? "module" : "commonjs",
     ecmaVersion: "latest",
     ecmaFeatures: {
-      // enable global strict mode (if ecmaVersion is 5 or greater)
-      jsx: true,
+      jsx: isReactProject,
       impliedStrict: true,
       experimentalObjectRestSpread: true,
     },
   },
   // Ignore css files and .d.ts files.
   ignorePatterns: ["**/*.(css|less|stylus|pcss)", "**/*.d.ts", "node_modules/**/*"],
+  overrides,
+  plugins,
   /**
    * import enabled by default, prettier enabled when project has prettier devDependency
    */
@@ -95,8 +94,6 @@ const config = {
     isUsingTypescript ? "plugin:jsdoc/recommended-typescript" : "plugin:jsdoc/recommended",
     isUsingPrettier ? "plugin:prettier/recommended" : "",
   ].filter(Boolean),
-  overrides,
-  plugins,
   rules: {
     ...logicRules.rules,
     ...suggestionRules.rules,
