@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.1.5
+
+### Patch Changes
+
+- c4df228: feature: Add flat config support, and code enhancement.
+
 ## 0.1.4
 
 ### Patch Changes
