@@ -107,7 +107,6 @@ function reactESLintFlatConfigGen() {
    */
   const configs = [
     {
-      files,
       plugins: {
         react: react,
         "react-hooks": reactHooks,
