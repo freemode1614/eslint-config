@@ -8,6 +8,18 @@ const unicorn = require("eslint-plugin-unicorn");
 const prettierRecommended = require("eslint-plugin-prettier/recommended");
 
 const settings = {
+  "import/parsers": {
+    "@typescript-eslint/parser": [".ts", ".tsx"],
+  },
+  "import/resolver": {
+    typescript: {
+      alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+      project: [
+        "tsconfig.json", //
+        "packages/*/tsconfig.json",
+      ],
+    },
+  },
   jsdoc: {
     tagNamePreference: {
       arg: "arg",
@@ -33,6 +45,27 @@ const settings = {
     },
   },
 };
+
+/**
+ *
+ * @param {object} root0 - Options
+ * @param {boolean} root0.isESModule - Project is using ES module.
+ * @param {boolean} root0.isUsingTypescript - Project is using Typescript.
+ * @returns {import("eslint").Linter.RulesRecord} - Rules
+ */
+function customRules({ isESModule, isUsingTypescript }) {
+  return {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
+    "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
+    "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
+    "import/no-unresolved": "off",
+    "n/no-missing-import": "off",
+    "unicorn/filename-case": "warn",
+    "unicorn/prefer-module": isESModule ? "error" : "off",
+  };
+}
 
 /**
  * @param {object} obj0 Options
@@ -108,17 +141,7 @@ function baseEslintConfigGen({ isESModule, isUsingReact, isUsingPrettier, isUsin
     plugins,
     extends: extends_,
     settings,
-    rules: {
-      "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
-      "unicorn/prefer-module": isESModule ? "error" : "off",
-      "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
-      "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
-      "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
-      "import/no-unresolved": "off",
-      "n/no-missing-import": "off",
-      "unicorn/filename-case": "warn",
-    },
+    rules: customRules({ isESModule, isUsingTypescript }),
     ...extraConfig,
   };
 
@@ -165,13 +188,7 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
         isUsingReact ? import_.configs.react.rules : {},
         isUsingTypescript ? import_.configs.typescript.rules : {},
         isESModule ? n.configs["flat/recommended-module"].rules : n.configs["flat/recommended-script"].rules,
-        {
-          "import-sort/imports": "error",
-          "import-sort/exports": "error",
-          "unicorn/prefer-module": isESModule ? "error" : "off",
-          "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
-          "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
-        },
+        customRules({ isESModule, isUsingTypescript }),
       ),
     },
     isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
