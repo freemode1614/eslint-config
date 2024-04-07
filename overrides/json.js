@@ -1,4 +1,4 @@
-const json = require("eslint-plugin-json");
+const jsonc = require("eslint-plugin-jsonc");
 
 /**
  * @returns {import("eslint").Linter.Config} - Legacy Eslint Config For JSON Files.
@@ -9,11 +9,8 @@ function jsonEslintConfigGen() {
    */
   const config = {
     files: ["**/*.json"],
-    plugins: ["json"],
-    extends: ["plugin:json/recommended"],
-    rules: {
-      "json/*": ["error", { allowComments: true }],
-    },
+    plugins: ["jsonc"],
+    extends: ["plugin:jsonc/recommended", "plugin:jsonc/prettier"],
   };
 
   return config;
@@ -27,17 +24,9 @@ function jestESLintFlatConfigGen() {
    * @type {import("eslint").Linter.FlatConfig[]}
    */
   const configs = [
-    {
-      files: ["**/*.json"],
-      plugins: {
-        json,
-      },
-      rules: {
-        ...json.configs["recommended-with-comments"].rules,
-      },
-    },
+    ...jsonc.configs["flat/recommended-with-json"], //
+    ...jsonc.configs["flat/prettier"],
   ];
-
   return configs;
 }
 

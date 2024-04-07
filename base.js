@@ -55,8 +55,8 @@ const settings = {
  */
 function customRules({ isESModule, isUsingTypescript }) {
   return {
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
+    "import-sort/imports": "error",
+    "import-sort/exports": "error",
     "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
