@@ -13,11 +13,7 @@
     "./flat": "./flat.js",
     ".": "./index.js"
   },
-  "scripts": {
-    "test": "vitest --watch false",
-    "lint": "eslint **/*.ts --fix --no-ignore",
-    "prepublishOnly": "tsc --noEmit"
-  },
+  "scripts": {},
   "keywords": [
     "eslint",
     "eslint-config"
