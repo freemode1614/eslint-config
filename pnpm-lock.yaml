@@ -62,6 +62,9 @@ dependencies:
   fs-extra:
     specifier: ^11.1.1
     version: 11.2.0
+  globals:
+    specifier: ^15.0.0
+    version: 15.0.0
   semver:
     specifier: ^7.5.4
     version: 7.6.0
@@ -2825,6 +2828,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2
+    dev: false
+
+  /globals@15.0.0:
+    resolution: {integrity: sha512-m/C/yR4mjO6pXDTm9/R/SpYTAIyaUB4EOzcaaMEl7mds7Mshct9GfejiJNQGjHHbdMPey13Kpu4TMbYi9ex1pw==}
+    engines: {node: '>=18'}
     dev: false
 
   /globalthis@1.0.3:

@@ -2,9 +2,11 @@ const { resolve } = require("node:path");
 
 const { readJSONSync } = require("fs-extra");
 
-const jsonConfigGen = require("./overrides/json.js");
-const reactConfigGen = require("./overrides/react.js");
-const tsConfigGen = require("./overrides/typescript.js");
+const { legacy: jsonConfigGen } = require("./overrides/json.js");
+const { legacy: reactConfigGen } = require("./overrides/react.js");
+const { legacy: tsConfigGen } = require("./overrides/typescript.js");
+const { legacy: testConfigGen } = require("./overrides/test");
+const { legacy: baseConfigGen } = require("./base.js");
 
 /**
  * @type {import("pkg-types").PackageJson}
@@ -19,7 +21,11 @@ if (!package_) {
   );
 }
 
-const { dependencies = {}, devDependencies = {}, peerDependencies = {} } = package_;
+const {
+  dependencies = {}, //
+  devDependencies = {},
+  peerDependencies = {},
+} = package_;
 
 const localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependencies, peerDependencies));
 
@@ -34,67 +40,36 @@ const isESModule = package_.type === "module";
  */
 const overrides = [
   jsonConfigGen(), //
-  reactConfigGen({ isReact: isUsingReact, isTypescript: isUsingTypescript }),
+  reactConfigGen({ isTypescript: isUsingTypescript }),
+  testConfigGen(),
 ];
 
 if (isUsingTypescript) {
   overrides.push(tsConfigGen());
 }
 
-/**
- *
- * Plugins for all files.
- *
- */
-const plugins = ["compat", "import", "jsdoc", "n", "simple-import-sort", "unicorn"];
+const config = baseConfigGen({
+  isESModule,
+  isUsingPrettier,
+  isUsingReact,
+  isUsingTypescript,
+  extraConfig: {
+    overrides,
+  },
+});
 
-/**
- * @type {import("eslint").Linter.Config}
- */
-const config = {
-  env: {
-    browser: true,
-    worker: true,
-    node: true,
-    commonjs: !isESModule,
-    es6: isESModule,
-  },
-  parserOptions: {
-    sourceType: isESModule ? "module" : "commonjs",
-    ecmaVersion: "latest",
-    ecmaFeatures: {
-      jsx: isUsingReact,
-      impliedStrict: true,
-      experimentalObjectRestSpread: true,
-    },
-  },
-  // Ignore css files and .d.ts files.
-  ignorePatterns: ["**/*.{css,less,stylus,pcss}", "**/*.d.ts"],
-  overrides,
-  plugins,
-  /**
-   * import enabled by default, prettier enabled when project has prettier devDependency
-   */
-  extends: [
-    "./rules/logic",
-    "./rules/styles",
-    "./rules/suggestions",
-    "./rules/deprecated",
-    "plugin:import/recommended",
-    "plugin:compat/recommended",
-    "plugin:n/recommended",
-    "plugin:unicorn/recommended",
-    isUsingTypescript ? "plugin:jsdoc/recommended-typescript" : "plugin:jsdoc/recommended",
-    isUsingPrettier ? "plugin:prettier/recommended" : "",
-  ].filter(Boolean),
-  rules: {
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "import/first": "error",
-    "import/newline-after-import": "error",
-    "import/no-duplicates": "error",
-    "unicorn/prefer-module": isESModule ? "error" : "off",
-  },
-};
+if (!process.env.DEBUGGER_LOG_MOCCONA_ESLINT_CONFIG) {
+  console.log(`config ->`, config);
+  console.log(`config.overrides ->`, config.overrides);
+  process.env.DEBUGGER_LOG_MOCCONA_ESLINT_CONFIG = "LOGGED";
+}
 
-module.exports = config;
+module.exports = baseConfigGen({
+  isESModule,
+  isUsingPrettier,
+  isUsingReact,
+  isUsingTypescript,
+  extraConfig: {
+    overrides,
+  },
+});

@@ -1,5 +1,7 @@
+const json = require("eslint-plugin-json");
+
 /**
- * @returns {import("eslint").Linter.Config} Return ESLint config for json files.
+ * @returns {import("eslint").Linter.Config} - Legacy Eslint Config For JSON Files.
  */
 function jsonEslintConfigGen() {
   /**
@@ -9,32 +11,37 @@ function jsonEslintConfigGen() {
     files: ["**/*.json"],
     plugins: ["plugin:json"],
     extends: ["plugin:json/recommended"],
-    excludedFiles: ["tsconfig.json", "tsconfig.*.json"],
     rules: {
-      // Valid rules
-      // 'json/duplicate-key': 'error',
-      // 'json/trailing-comma': 'error',
-      // 'json/undefined': 'off',
-      // 'json/enum-value-mismatch': 'off',
-      // 'json/unexpected-end-of-comment': 'off',
-      // 'json/unexpected-end-of-string': 'off',
-      // 'json/unexpected-end-of-number': 'off',
-      // 'json/invalid-unicode': 'off',
-      // 'json/invalid-escape-character': 'off',
-      // 'json/invalid-character': 'off',
-      // 'json/property-expected': 'off',
-      // 'json/comma-expected': 'off',
-      // 'json/colon-expected': 'off',
-      // 'json/value-expected': 'off',
-      // 'json/comma-or-close-backet-expected': 'off',
-      // 'json/comma-or-close-brace-expected': 'off',
-      // 'json/comment-not-permitted': 'off',
-      // 'json/schema-resolve-error': 'off',
-      // 'json/unknown': 'off',
+      "json/*": ["error", { allowComments: true }],
     },
   };
 
   return config;
 }
 
-module.exports = jsonEslintConfigGen;
+/**
+ * @returns {import("eslint").Linter.FlatConfig[]}  - Flat Eslint Config For JSON Files.
+ */
+function jestESLintFlatConfigGen() {
+  /**
+   * @type {import("eslint").Linter.FlatConfig[]}
+   */
+  const configs = [
+    {
+      files: ["**/*.json"],
+      plugins: {
+        json,
+      },
+      rules: {
+        ...json.configs["recommended-with-comments"].rules,
+      },
+    },
+  ];
+
+  return configs;
+}
+
+module.exports = {
+  legacy: jsonEslintConfigGen,
+  flat: jestESLintFlatConfigGen,
+};
