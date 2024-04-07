@@ -1,11 +1,10 @@
 const { resolve } = require("node:path");
 
 const { readJSONSync } = require("fs-extra");
-const semver = require("semver");
 
-const jsonOverride = require("./overrides/json.js");
-const reactOverride = require("./overrides/react.js");
-const tsOverride = require("./overrides/typescript.js");
+const jsonConfigGen = require("./overrides/json.js");
+const reactConfigGen = require("./overrides/react.js");
+const tsConfigGen = require("./overrides/typescript.js");
 
 /**
  * @type {import("pkg-types").PackageJson}
@@ -24,7 +23,7 @@ const { dependencies = {}, devDependencies = {}, peerDependencies = {} } = packa
 
 const localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependencies, peerDependencies));
 
-const isReactProject = localProjectDeps.includes("react");
+const isUsingReact = localProjectDeps.includes("react");
 const isUsingPrettier = localProjectDeps.includes("prettier");
 const isUsingTypescript = localProjectDeps.includes("typescript");
 
@@ -33,25 +32,20 @@ const isESModule = package_.type === "module";
 /**
  * @type {import("eslint").Linter.ConfigOverride[]}
  */
-const overrides = [jsonOverride];
+const overrides = [
+  jsonConfigGen(), //
+  reactConfigGen({ isReact: isUsingReact, isTypescript: isUsingTypescript }),
+];
 
 if (isUsingTypescript) {
-  overrides.push(tsOverride);
+  overrides.push(tsConfigGen());
 }
 
-if (isReactProject) {
-  try {
-    const reactPackage = readJSONSync(resolve(process.cwd(), "node_modules/react/package.json"));
-    if (reactPackage && semver.satisfies(reactPackage.version, ">=17")) {
-      reactOverride.extends.push("plugin:react/jsx-runtime");
-    }
-  } catch (error) {
-    console.error(error);
-  }
-
-  overrides.push(reactOverride);
-}
-
+/**
+ *
+ * Plugins for all files.
+ *
+ */
 const plugins = ["compat", "import", "jsdoc", "n", "simple-import-sort", "unicorn"];
 
 /**
@@ -65,18 +59,17 @@ const config = {
     commonjs: !isESModule,
     es6: isESModule,
   },
-  parser: isUsingTypescript ? "@typescript-eslint/parser" : undefined,
   parserOptions: {
     sourceType: isESModule ? "module" : "commonjs",
     ecmaVersion: "latest",
     ecmaFeatures: {
-      jsx: isReactProject,
+      jsx: isUsingReact,
       impliedStrict: true,
       experimentalObjectRestSpread: true,
     },
   },
   // Ignore css files and .d.ts files.
-  ignorePatterns: ["**/*.(css|less|stylus|pcss)", "**/*.d.ts", "node_modules/**/*"],
+  ignorePatterns: ["**/*.{css,less,stylus,pcss}", "**/*.d.ts"],
   overrides,
   plugins,
   /**

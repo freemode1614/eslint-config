@@ -1,12 +1,19 @@
 /**
- * @type {import('eslint').Linter.Config}
+ * @returns {import("eslint").Linter.Config} Return ESLint config for ts,tsx files.
  */
-const config = {
-  files: ["**/*.ts", "**/*.tsx"],
-  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
-  rules: {},
-};
+function tsESLintConfigGen() {
+  /**
+   * @type {import('eslint').Linter.Config}
+   */
+  const config = {
+    files: ["**/*.ts", "**/*.tsx"],
+    extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+    parser: "@typescript-eslint/parser",
+    plugins: ["@typescript-eslint"],
+    rules: {},
+  };
 
-module.exports = config;
+  return config;
+}
+
+module.exports = tsESLintConfigGen;
