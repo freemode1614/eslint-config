@@ -179,9 +179,6 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
         unicorn,
       }),
       settings,
-    },
-    {
-      files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
       rules: Object.assign(
         compat.configs.recommended.rules,
         unicorn.configs.recommended.rules,
