@@ -9,7 +9,7 @@ function jsonEslintConfigGen() {
    */
   const config = {
     files: ["**/*.json"],
-    plugins: ["plugin:json"],
+    plugins: ["json"],
     extends: ["plugin:json/recommended"],
     rules: {
       "json/*": ["error", { allowComments: true }],

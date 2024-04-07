@@ -6,6 +6,7 @@ const reactRefresh = require("eslint-plugin-react-refresh");
 const { parser: tsParser } = require("typescript-eslint");
 const { readJSONSync } = require("fs-extra");
 const globals = require("globals");
+const semver = require("semver");
 
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.
@@ -14,7 +15,7 @@ const isReactVersionGreaterThan17 = (function checkReactVersion() {
      * @type {import('pkg-types').PackageJson}
      */
     const reactPackage = readJSONSync(resolve(process.cwd(), "node_modules/react/package.json"));
-    return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17.0.0"));
+    return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
   } catch {
     // Can't find react in local, just ignore the error and return a false.
     return false;

@@ -7,6 +7,33 @@ const importSort = require("eslint-plugin-simple-import-sort");
 const unicorn = require("eslint-plugin-unicorn");
 const prettierRecommended = require("eslint-plugin-prettier/recommended");
 
+const settings = {
+  jsdoc: {
+    tagNamePreference: {
+      arg: "arg",
+      argument: "argument",
+      const: "const",
+      constructor: "constructor",
+      defaultvalue: "defaultvalue",
+      desc: "desc",
+      emits: "emits",
+      exception: "exception",
+      extends: "extends",
+      fileoverview: "fileoverview",
+      func: "func",
+      host: "host",
+      method: "method",
+      overview: "overview",
+      prop: "prop",
+      return: "return",
+      var: "var",
+      virtual: "virtual",
+      yield: "yield",
+      return: "return",
+    },
+  },
+};
+
 /**
  * @param {object} obj0 Options
  * @param {boolean} obj0.isESModule - Project is using ES module.
@@ -80,10 +107,17 @@ function baseEslintConfigGen({ isESModule, isUsingReact, isUsingPrettier, isUsin
     ignorePatterns: ["**/*.{css,less,stylus,pcss}", "**/*.d.ts"],
     plugins,
     extends: extends_,
+    settings,
     rules: {
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
       "unicorn/prefer-module": isESModule ? "error" : "off",
+      "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
+      "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
+      "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
+      "import/no-unresolved": "off",
+      "n/no-missing-import": "off",
+      "unicorn/filename-case": "warn",
     },
     ...extraConfig,
   };
@@ -121,6 +155,7 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
         jsdoc,
         unicorn,
       }),
+      settings,
     },
     {
       files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
@@ -134,6 +169,8 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
           "import-sort/imports": "error",
           "import-sort/exports": "error",
           "unicorn/prefer-module": isESModule ? "error" : "off",
+          "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
+          "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
         },
       ),
     },
