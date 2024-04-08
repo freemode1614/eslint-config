@@ -1,3 +1,5 @@
+// @ts-nocheck: ignore this file
+
 const json = require("eslint-plugin-json");
 const compat = require("eslint-plugin-compat");
 const import_ = require("eslint-plugin-import");
