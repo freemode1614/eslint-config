@@ -46,6 +46,15 @@ const settings = {
       return: "return",
     },
   },
+  node: {
+    "typescriptExtensionMap": [
+      ["", ".js"],
+      [".ts", ".js"],
+      [".cts", ".cjs"],
+      [".mts", ".mjs"],
+      [".tsx", ".jsx"],
+    ]
+  }
 };
 
 /**
@@ -61,11 +70,26 @@ function customRules({ isESModule, isUsingTypescript }) {
     "import-sort/exports": "error",
     "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
+    "jsdoc/require-param": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
+    "jsdoc/check-param-names": isUsingTypescript ? "off" : "warn",
+
+    "n/no-missing-import": "off",
+    "n/no-missing-require": "off",
+
     // "import/no-unresolved": "off",
     // "n/no-missing-import": "off",
     "unicorn/filename-case": "warn",
     "unicorn/prefer-module": isESModule ? "error" : "off",
+    "unicorn/switch-case-braces": "off",
+    "unicorn/prevent-abbreviations": ["warn", {
+      "replacements": {
+        "useRef": false
+      }
+    }],
+    "unicorn/filename-case": ["error", {
+      case: "camelCase"
+    }]
   };
 }
 
