@@ -62,8 +62,8 @@ function customRules({ isESModule, isUsingTypescript }) {
     "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
-    "import/no-unresolved": "off",
-    "n/no-missing-import": "off",
+    // "import/no-unresolved": "off",
+    // "n/no-missing-import": "off",
     "unicorn/filename-case": "warn",
     "unicorn/prefer-module": isESModule ? "error" : "off",
   };
