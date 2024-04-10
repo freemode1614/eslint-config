@@ -1,6 +1,5 @@
 // @ts-nocheck: ignore this file
 
-const json = require("eslint-plugin-json");
 const compat = require("eslint-plugin-compat");
 const import_ = require("eslint-plugin-import");
 const jsdoc = require("eslint-plugin-jsdoc");
@@ -47,14 +46,14 @@ const settings = {
     },
   },
   node: {
-    "typescriptExtensionMap": [
+    typescriptExtensionMap: [
       ["", ".js"],
       [".ts", ".js"],
       [".cts", ".cjs"],
       [".mts", ".mjs"],
       [".tsx", ".jsx"],
-    ]
-  }
+    ],
+  },
 };
 
 /**
@@ -82,14 +81,31 @@ function customRules({ isESModule, isUsingTypescript }) {
     "unicorn/filename-case": "warn",
     "unicorn/prefer-module": isESModule ? "error" : "off",
     "unicorn/switch-case-braces": "off",
-    "unicorn/prevent-abbreviations": ["warn", {
-      "replacements": {
-        "useRef": false
-      }
-    }],
-    "unicorn/filename-case": ["error", {
-      case: "camelCase"
-    }]
+    "unicorn/prevent-abbreviations": [
+      "warn",
+      {
+        replacements: {
+          useRef: false,
+        },
+      },
+    ],
+    "unicorn/filename-case": [
+      "error",
+      {
+        case: "camelCase",
+      },
+    ],
+    "unicorn/prefer-set-has": "warn",
+    "unicorn/no-null": "warn",
+    "unicorn/prefer-string-replace-all": "off",
+    "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-array-push-push": "warn",
+    "unicorn/prefer-export-from": "warn",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/import-style": ["warn"],
+    "unicorn/prefer-spread": "warn",
+    "unicorn/no-for-loop": "warn",
+    "no-case-declarations": "off",
   };
 }
 
@@ -187,13 +203,6 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
    * @type {import("eslint").Linter.FlatConfig[]}
    */
   const configs = [
-    {
-      files: ["*.json"],
-      plugins: { json },
-      rules: {
-        ...json.configs["recommended-with-comments"].rules,
-      },
-    },
     {
       files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
       plugins: Object.assign({
