@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.1.7
+
+### Patch Changes
+
+- fix: Update some unicorn rules
+
 ## 0.1.5
 
 ### Patch Changes
