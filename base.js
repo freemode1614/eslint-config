@@ -4,7 +4,7 @@ const compat = require("eslint-plugin-compat");
 const import_ = require("eslint-plugin-import");
 const jsdoc = require("eslint-plugin-jsdoc");
 const n = require("eslint-plugin-n");
-const importSort = require("eslint-plugin-simple-import-sort");
+const simpleImportSort = require("eslint-plugin-simple-import-sort");
 const unicorn = require("eslint-plugin-unicorn");
 const prettierRecommended = require("eslint-plugin-prettier/recommended");
 
@@ -65,8 +65,8 @@ const settings = {
  */
 function customRules({ isESModule, isUsingTypescript }) {
   return {
-    "import-sort/imports": "error",
-    "import-sort/exports": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-param": isUsingTypescript ? "off" : "warn",
@@ -208,7 +208,7 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
       plugins: Object.assign({
         n,
         compat,
-        "import-sort": importSort,
+        "simple-import-sort": simpleImportSort,
         import: import_,
         jsdoc,
         unicorn,
