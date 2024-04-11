@@ -10,7 +10,7 @@ function jsonEslintConfigGen() {
   const config = {
     files: ["**/*.json"],
     plugins: ["jsonc"],
-    extends: ["plugin:jsonc/recommended", "plugin:jsonc/prettier"],
+    extends: ["plugin:jsonc/recommended-with-json", "plugin:jsonc/prettier"],
   };
 
   return config;
