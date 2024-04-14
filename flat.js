@@ -28,6 +28,7 @@ const localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependen
 const isUsingReact = localProjectDeps.includes("react");
 const isUsingPrettier = localProjectDeps.includes("prettier");
 const isUsingTypescript = localProjectDeps.includes("typescript");
+const isUsingJest = localProjectDeps.includes("jest");
 
 const isESModule = package_.type === "module";
 
@@ -43,7 +44,7 @@ const configs = [
   ...jsonConfigGen(),
   ...reactConfigGen(),
   ...tsConfigGen(),
-  ...testConfigGen(),
+  ...testConfigGen({ isUsingJest }),
 ];
 
 if (!process.env.DEBUGGER_LOG_MOCCONA_ESLINT_CONFIG) {

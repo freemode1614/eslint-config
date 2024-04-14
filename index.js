@@ -32,6 +32,7 @@ const localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependen
 const isUsingReact = localProjectDeps.includes("react");
 const isUsingPrettier = localProjectDeps.includes("prettier");
 const isUsingTypescript = localProjectDeps.includes("typescript");
+const isUsingJest = localProjectDeps.includes("jest");
 
 const isESModule = package_.type === "module";
 
@@ -41,7 +42,7 @@ const isESModule = package_.type === "module";
 const overrides = [
   jsonConfigGen(), //
   reactConfigGen({ isTypescript: isUsingTypescript }),
-  testConfigGen(),
+  testConfigGen({ isUsingJest }),
 ];
 
 if (isUsingTypescript) {

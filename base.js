@@ -119,7 +119,7 @@ function customRules({ isESModule, isUsingTypescript }) {
  * @returns {import("eslint").Linter.Config} - Legacy Eslint Config For JSON Files.
  */
 function baseEslintConfigGen({ isESModule, isUsingReact, isUsingPrettier, isUsingTypescript, extraConfig = {} }) {
-  const plugins = ["compat", "jsdoc", "n", "simple-import-sort", "unicorn", "jest"];
+  const plugins = ["compat", "jsdoc", "n", "simple-import-sort", "unicorn"];
 
   let extends_ = [
     ...[`./rules/logic.js`, `./rules/suggestions.js`, `./rules/deprecated`].map((ruleFilePath) =>
