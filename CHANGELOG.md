@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.1.9
+
+### Patch Changes
+
+- Fix test part rules issue
+
 ## 0.1.8
 
 ### Patch Changes
