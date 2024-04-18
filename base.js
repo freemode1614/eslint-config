@@ -61,9 +61,10 @@ const settings = {
  * @param {object} root0 - Options
  * @param {boolean} root0.isESModule - Project is using ES module.
  * @param {boolean} root0.isUsingTypescript - Project is using Typescript.
+ * @param {boolean} root0.isUsingReact - Project is using React.
  * @returns {import("eslint").Linter.RulesRecord} - Rules
  */
-function customRules({ isESModule, isUsingTypescript }) {
+function customRules({ isESModule, isUsingTypescript, isUsingReact }) {
   return {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
@@ -105,6 +106,8 @@ function customRules({ isESModule, isUsingTypescript }) {
     "unicorn/import-style": ["warn"],
     "unicorn/prefer-spread": "warn",
     "unicorn/no-for-loop": "warn",
+    // Disable no-null rule, since `null` is a valid ReactNode for function component.
+    "unicorn/no-null": isUsingReact ? "off" : "error",
     "no-case-declarations": "off",
   };
 }
@@ -183,7 +186,7 @@ function baseEslintConfigGen({ isESModule, isUsingReact, isUsingPrettier, isUsin
     plugins,
     extends: extends_,
     settings,
-    rules: customRules({ isESModule, isUsingTypescript }),
+    rules: customRules({ isESModule, isUsingTypescript, isUsingReact }),
     ...extraConfig,
   };
 
@@ -220,7 +223,7 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
         isUsingReact ? import_.configs.react.rules : {},
         isUsingTypescript ? import_.configs.typescript.rules : {},
         isESModule ? n.configs["flat/recommended-module"].rules : n.configs["flat/recommended-script"].rules,
-        customRules({ isESModule, isUsingTypescript }),
+        customRules({ isESModule, isUsingTypescript, isUsingReact }),
       ),
     },
     isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
