@@ -39,7 +39,7 @@ function testEslintFlatConfigGen({ isUsingJest }) {
           ...jest.configs["flat/all"],
         },
       ]
-    : [];
+    : [{ files }];
 
   return configs;
 }
