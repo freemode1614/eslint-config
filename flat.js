@@ -32,8 +32,6 @@ const isUsingJest = localProjectDeps.includes("jest");
 
 const isESModule = package_.type === "module";
 
-console.log("isESModule ->", isESModule);
-
 const configs = [
   ...baseConfigGen({
     isESModule,

@@ -236,6 +236,17 @@ function baseESLintFlatConfigGen({ isESModule, isUsingReact, _, isUsingTypescrip
     },
     isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
     prettierRecommended,
+    {
+      ignores: [
+        "**/*.{css,less,stylus,pcss}",
+        "**/*.d.ts",
+        "**/npm/**",
+        "**/node_modules/**",
+        "**/build/**",
+        "**/dist/**",
+        "**/temp/**",
+      ],
+    },
   ];
 
   return configs;
