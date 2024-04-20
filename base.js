@@ -182,7 +182,15 @@ function baseEslintConfigGen({ isESModule, isUsingReact, isUsingPrettier, isUsin
       },
     },
     // Ignore css files and .d.ts files.
-    ignorePatterns: ["**/*.{css,less,stylus,pcss}", "**/*.d.ts"],
+    ignorePatterns: [
+      "**/*.{css,less,stylus,pcss}",
+      "**/*.d.ts",
+      "**/npm/**",
+      "**/node_modules/**",
+      "**/build/**",
+      "**/dist/**",
+      "**/temp/**",
+    ],
     plugins,
     extends: extends_,
     settings,
