@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.1.10
+
+### Patch Changes
+
+- Fix issues
+
 ## 0.1.9
 
 ### Patch Changes
