@@ -1,0 +1,1 @@
+declare module "@moccona/eslint-config/flat" {}
