@@ -68,6 +68,7 @@ function customRules({ isESModule, isUsingTypescript, isUsingReact }) {
     "simple-import-sort/exports": "error",
     "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
+    "jsdoc/require-returns-description": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-param": isUsingTypescript ? "off" : "warn",
     "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
     "jsdoc/check-param-names": isUsingTypescript ? "off" : "warn",
