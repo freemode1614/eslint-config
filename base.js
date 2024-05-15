@@ -1,5 +1,3 @@
-// @ts-nocheck: ignore this file
-
 const compat = require("eslint-plugin-compat");
 const import_ = require("eslint-plugin-import");
 const jsdoc = require("eslint-plugin-jsdoc");
@@ -79,7 +77,6 @@ function customRules({ isESModule, isUsingTypescript, isUsingReact }) {
 
     // "import/no-unresolved": "off",
     // "n/no-missing-import": "off",
-    "unicorn/filename-case": "warn",
     "unicorn/prefer-module": isESModule ? "error" : "off",
     "unicorn/switch-case-braces": "off",
     "unicorn/prevent-abbreviations": [
@@ -91,9 +88,10 @@ function customRules({ isESModule, isUsingTypescript, isUsingReact }) {
       },
     ],
     "unicorn/filename-case": [
-      "error",
+      "warn",
       {
         case: "camelCase",
+        ignore: [/API/, /JSON/, /App/],
       },
     ],
     "unicorn/prefer-set-has": "warn",
