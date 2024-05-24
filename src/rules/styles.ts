@@ -100,4 +100,4 @@ const config: Pick<Linter.ConfigOverride, "rules"> = {
   },
 };
 
-module.exports = config;
+export default config;
