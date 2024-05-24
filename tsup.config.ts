@@ -7,7 +7,7 @@ export default defineConfig([
     entry: ["./src/flat.ts", "./src/legacy.ts"],
     outDir: "./npm",
     format: ["esm", "cjs"],
-    dts: false,
+    dts: true,
     shims: true,
     sourcemap: false,
     treeshake: true,
