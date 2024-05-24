@@ -5,10 +5,15 @@ import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
-import { readJSONSync } from "fs-extra";
 import globals from "globals";
 import semver from "semver";
 import { parser as tsParser } from "typescript-eslint";
+
+import fsExtra from "fs-extra";
+
+const {
+   readJSONSync 
+} = fsExtra
 
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.

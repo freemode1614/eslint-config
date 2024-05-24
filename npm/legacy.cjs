@@ -6,10 +6,14 @@ var semver = require('semver');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
+var fsExtra__default = /*#__PURE__*/_interopDefault(fsExtra);
 var semver__default = /*#__PURE__*/_interopDefault(semver);
 
 // src/utils.ts
-var package_ = fsExtra.readJSONSync(path.resolve(process.cwd(), "package.json"), {
+var {
+  readJSONSync
+} = fsExtra__default.default;
+var package_ = readJSONSync(path.resolve(process.cwd(), "package.json"), {
   throws: false
 });
 if (!package_) {
@@ -22,7 +26,7 @@ var localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependenci
 var isUsingReact = localProjectDeps.includes("react");
 var isUsingPrettier = localProjectDeps.includes("prettier");
 var isUsingTypescript = localProjectDeps.includes("typescript");
-localProjectDeps.includes("jest");
+var isUsingJest = localProjectDeps.includes("jest");
 var isESModule = package_.type === "module";
 
 // src/rules/custom.ts
@@ -776,9 +780,9 @@ var base_default = {
 
 // src/legacy/jest.ts
 var jest_default = {
-  files: ["**/*.json"],
-  plugins: ["jsonc"],
-  extends: ["plugin:jsonc/recommended-with-json", "plugin:jsonc/prettier"]
+  files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"],
+  plugins: isUsingJest ? ["jest"] : [],
+  extends: isUsingJest ? ["plugin:jest/all"] : []
 };
 
 // src/legacy/json.ts

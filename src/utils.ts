@@ -1,6 +1,10 @@
 import { resolve } from "node:path";
 
-import { readJSONSync } from "fs-extra";
+import fsExtra from "fs-extra";
+
+const {
+   readJSONSync 
+} = fsExtra
 
 const package_ = readJSONSync(resolve(process.cwd(), "package.json"), {
   throws: false,

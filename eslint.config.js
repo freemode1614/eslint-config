@@ -1,3 +1,1 @@
-const configs = require("./flat.js");
-
-module.exports = configs;
+export { default } from "./npm/flat.js";

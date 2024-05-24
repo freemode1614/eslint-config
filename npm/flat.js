@@ -1,4 +1,4 @@
-import { isUsingReact, isUsingTypescript, isESModule, custom_default } from './chunk-UM44MAED.js';
+import { isUsingReact, isUsingTypescript, isESModule, custom_default, isUsingJest } from './chunk-FO636WYL.js';
 import * as compat from 'eslint-plugin-compat';
 import * as import_ from 'eslint-plugin-import';
 import jsdoc from 'eslint-plugin-jsdoc';
@@ -13,10 +13,10 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import { readJSONSync } from 'fs-extra';
 import globals from 'globals';
 import semver from 'semver';
 import { parser, configs } from 'typescript-eslint';
+import fsExtra from 'fs-extra';
 
 var settings = {
   "import/parsers": {
@@ -101,17 +101,20 @@ var base_default = [
     ]
   }
 ];
-var jest_default = [
+var jest_default = isUsingJest ? [
   {
     files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"]
   },
-  ...jest.configs["flat/all"]
-];
+  jest.configs["flat/all"]
+] : [];
 var json_default = [
   ...jsonc.configs["flat/recommended-with-json"],
   //
   ...jsonc.configs["flat/prettier"]
 ];
+var {
+  readJSONSync
+} = fsExtra;
 var isReactVersionGreaterThan17 = function checkReactVersion() {
   try {
     const reactPackage = readJSONSync(resolve(process.cwd(), "node_modules/react/package.json"));

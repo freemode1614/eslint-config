@@ -1,7 +1,7 @@
-import { custom_default, isUsingPrettier, isESModule, isUsingTypescript, isUsingReact } from './chunk-UM44MAED.js';
+import { custom_default, isUsingPrettier, isESModule, isUsingTypescript, isUsingReact, isUsingJest } from './chunk-FO636WYL.js';
 import { resolve } from 'node:path';
-import { readJSONSync } from 'fs-extra';
 import semver from 'semver';
+import { readJSONSync } from 'fs-extra';
 
 // src/rules/deprecated.ts
 var config = {
@@ -709,9 +709,9 @@ var base_default = {
 
 // src/legacy/jest.ts
 var jest_default = {
-  files: ["**/*.json"],
-  plugins: ["jsonc"],
-  extends: ["plugin:jsonc/recommended-with-json", "plugin:jsonc/prettier"]
+  files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"],
+  plugins: isUsingJest ? ["jest"] : [],
+  extends: isUsingJest ? ["plugin:jest/all"] : []
 };
 
 // src/legacy/json.ts

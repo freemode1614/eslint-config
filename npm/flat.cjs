@@ -46,6 +46,7 @@ var n__default = /*#__PURE__*/_interopDefault(n);
 var prettierRecommended__default = /*#__PURE__*/_interopDefault(prettierRecommended);
 var simpleImportSort__default = /*#__PURE__*/_interopDefault(simpleImportSort);
 var unicorn__default = /*#__PURE__*/_interopDefault(unicorn);
+var fsExtra__default = /*#__PURE__*/_interopDefault(fsExtra);
 var jest__default = /*#__PURE__*/_interopDefault(jest);
 var jsonc__default = /*#__PURE__*/_interopDefault(jsonc);
 var jsxA11y__default = /*#__PURE__*/_interopDefault(jsxA11y);
@@ -56,7 +57,10 @@ var globals__default = /*#__PURE__*/_interopDefault(globals);
 var semver__default = /*#__PURE__*/_interopDefault(semver);
 
 // src/flat/base.ts
-var package_ = fsExtra.readJSONSync(path.resolve(process.cwd(), "package.json"), {
+var {
+  readJSONSync
+} = fsExtra__default.default;
+var package_ = readJSONSync(path.resolve(process.cwd(), "package.json"), {
   throws: false
 });
 if (!package_) {
@@ -69,7 +73,7 @@ var localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependenci
 var isUsingReact = localProjectDeps.includes("react");
 localProjectDeps.includes("prettier");
 var isUsingTypescript = localProjectDeps.includes("typescript");
-localProjectDeps.includes("jest");
+var isUsingJest = localProjectDeps.includes("jest");
 var isESModule = package_.type === "module";
 
 // src/rules/custom.ts
@@ -201,20 +205,23 @@ var base_default = [
     ]
   }
 ];
-var jest_default = [
+var jest_default = isUsingJest ? [
   {
     files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"]
   },
-  ...jest__default.default.configs["flat/all"]
-];
+  jest__default.default.configs["flat/all"]
+] : [];
 var json_default = [
   ...jsonc__default.default.configs["flat/recommended-with-json"],
   //
   ...jsonc__default.default.configs["flat/prettier"]
 ];
+var {
+  readJSONSync: readJSONSync2
+} = fsExtra__default.default;
 var isReactVersionGreaterThan17 = function checkReactVersion() {
   try {
-    const reactPackage = fsExtra.readJSONSync(path.resolve(process.cwd(), "node_modules/react/package.json"));
+    const reactPackage = readJSONSync2(path.resolve(process.cwd(), "node_modules/react/package.json"));
     return !!(reactPackage && semver__default.default.satisfies(reactPackage.version, ">=17"));
   } catch {
     return false;
