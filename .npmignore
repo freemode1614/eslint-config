@@ -1,7 +1,3 @@
 *
 
-!overrides/**
-!rules/**
-!base.js
-!flat.js
-!index.js
+!npm/**
