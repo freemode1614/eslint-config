@@ -1,11 +1,8 @@
 import { resolve } from "node:path";
 
 import { Linter } from "eslint";
-
-import semver from "semver";
-
 import { readJSONSync } from "fs-extra";
-
+import semver from "semver";
 
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.

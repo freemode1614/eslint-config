@@ -1,6 +1,7 @@
-import { isUsingJest } from "@/utils";
 import { Linter } from "eslint";
 import jest from "eslint-plugin-jest";
+
+import { isUsingJest } from "@/utils";
 
 export default (isUsingJest
   ? [

@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.0
+
+### Minor Changes
+
+- chore: rewrite in ts
+
 ## 0.1.10
 
 ### Patch Changes
