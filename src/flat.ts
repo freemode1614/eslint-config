@@ -4,4 +4,6 @@ import json from "@/flat/json";
 import react from "@/flat/react";
 import typescript from "@/flat/typescript";
 
-export default [...base, ...jest, ...json, ...react, ...typescript];
+const config = [...base, ...jest, ...json, ...react, ...typescript];
+
+export default config;

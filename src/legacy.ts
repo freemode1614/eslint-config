@@ -6,7 +6,9 @@ import json from "@/legacy/json";
 import react from "@/legacy/react";
 import typescript from "@/legacy/typescript";
 
-export default {
+const config = {
   ...base,
   overrides: [json, jest, react, typescript],
 } as Linter.Config;
+
+export default config;

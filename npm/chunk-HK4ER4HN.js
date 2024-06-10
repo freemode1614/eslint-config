@@ -1,21 +1,52 @@
-import { Linter } from "eslint";
+import { resolve } from 'node:path';
+import fsExtra from 'fs-extra';
 
-import { isESModule, isUsingReact, isUsingTypescript } from "@/utils";
+// src/utils.ts
+var { readJSONSync } = fsExtra;
+var package_ = readJSONSync(resolve(process.cwd(), "package.json"), {
+  throws: false
+});
+if (!package_) {
+  throw new Error(
+    "No `package.json` found in local, make sure you using eslint in a valid nodejs package which include a `package.json` file."
+  );
+}
+var { dependencies = {}, devDependencies = {}, peerDependencies = {} } = package_;
+var localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependencies, peerDependencies));
+var isUsingReact = localProjectDeps.includes("react");
+var isUsingPrettier = localProjectDeps.includes("prettier");
+var isUsingTypescript = localProjectDeps.includes("typescript");
+var isUsingJest = localProjectDeps.includes("jest");
+var isESModule = package_.type === "module";
+console.log(
+  "isUsingReact ->",
+  isUsingReact,
+  "\n",
+  "isUsingPrettier ->",
+  isUsingPrettier,
+  "\n",
+  "isUsingTypescript ->",
+  isUsingTypescript,
+  "\n",
+  "isUsingJest ->",
+  isUsingJest,
+  "\n",
+  "isESModule ->",
+  isESModule
+);
 
-export default {
+// src/rules/custom.ts
+var custom_default = {
   "simple-import-sort/imports": "error",
   "simple-import-sort/exports": "error",
-
   "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
   "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
   "jsdoc/require-returns-description": isUsingTypescript ? "off" : "warn",
   "jsdoc/require-param": isUsingTypescript ? "off" : "warn",
   "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
   "jsdoc/check-param-names": isUsingTypescript ? "off" : "warn",
-
   "n/no-missing-import": "off",
   "n/no-missing-require": "off",
-
   // "import/no-unresolved": "off",
   // "n/no-missing-import": "off",
   "unicorn/prefer-module": isESModule ? "error" : "off",
@@ -24,16 +55,16 @@ export default {
     "warn",
     {
       replacements: {
-        useRef: false,
-      },
-    },
+        useRef: false
+      }
+    }
   ],
   "unicorn/filename-case": [
     "warn",
     {
       case: "camelCase",
-      ignore: [/API/, /JSON/, /App/],
-    },
+      ignore: [/API/, /JSON/, /App/]
+    }
   ],
   "unicorn/prefer-set-has": "warn",
   "unicorn/prefer-string-replace-all": "off",
@@ -46,5 +77,7 @@ export default {
   "unicorn/no-for-loop": "warn",
   // Disable no-null rule, since `null` is a valid ReactNode for function component.
   "unicorn/no-null": isUsingReact ? "off" : "warn",
-  "no-case-declarations": "off",
-} as Partial<Linter.RulesRecord>;
+  "no-case-declarations": "off"
+};
+
+export { custom_default, isESModule, isUsingJest, isUsingPrettier, isUsingReact, isUsingTypescript };

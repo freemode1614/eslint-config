@@ -1,23 +1,194 @@
-import { a, c, e, f, d } from './chunk-5UKRKZKC.js';
-import * as m from 'eslint-plugin-compat';
-import * as t from 'eslint-plugin-import';
-import i from 'eslint-plugin-jsdoc';
+import { isUsingReact, isUsingTypescript, isESModule, custom_default, isUsingJest } from './chunk-HK4ER4HN.js';
+import * as compat from 'eslint-plugin-compat';
+import * as import_ from 'eslint-plugin-import';
+import jsdoc from 'eslint-plugin-jsdoc';
 import n from 'eslint-plugin-n';
-import C from 'eslint-plugin-prettier/recommended';
-import F from 'eslint-plugin-simple-import-sort';
-import g from 'eslint-plugin-unicorn';
-import R from 'eslint-plugin-jest';
-import v from 'eslint-plugin-jsonc';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import unicorn from 'eslint-plugin-unicorn';
+import jest from 'eslint-plugin-jest';
+import jsonc from 'eslint-plugin-jsonc';
 import { resolve } from 'node:path';
-import h from 'eslint-plugin-jsx-a11y';
-import c$1 from 'eslint-plugin-react';
-import w from 'eslint-plugin-react-hooks';
-import E from 'eslint-plugin-react-refresh';
-import s from 'globals';
-import _ from 'semver';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import fsExtra from 'fs-extra';
+import globals from 'globals';
+import semver from 'semver';
 import { parser, configs } from 'typescript-eslint';
-import T from 'fs-extra';
 
-var O={"import/parsers":{"@typescript-eslint/parser":[".ts",".tsx"]},"import/resolver":{typescript:{alwaysTryTypes:!0,project:["tsconfig.json","packages/*/tsconfig.json"]}},jsdoc:{tagNamePreference:{arg:"arg",argument:"argument",const:"const",constructor:"constructor",defaultvalue:"defaultvalue",desc:"desc",emits:"emits",exception:"exception",extends:"extends",fileoverview:"fileoverview",func:"func",host:"host",method:"method",overview:"overview",prop:"prop",return:"return",var:"var",virtual:"virtual",yield:"yield"}},node:{typescriptExtensionMap:[["",".js"],[".ts",".js"],[".cts",".cjs"],[".mts",".mjs"],[".tsx",".jsx"]]}},j=[{files:["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],plugins:Object.assign({n,compat:m,"simple-import-sort":F,import:t,jsdoc:i,unicorn:g}),settings:O,rules:Object.assign(m.configs.recommended.rules,g.configs.recommended.rules,a?t.configs.react.rules:{},c?t.configs.typescript.rules:{},e?n.configs["flat/recommended-module"].rules:n.configs["flat/recommended-script"].rules,f)},c?i.configs["flat/recommended-typescript"]:i.configs["flat/recommended"],C,{ignores:["**/*.{css,less,stylus,pcss}","**/*.d.ts","**/npm/**","**/node_modules/**","**/build/**","**/dist/**","**/temp/**"]}];var x=d?[{files:["**/*.{spec,test}.{js,ts,jsx,tsx}","tests?/*.{js,ts,jsx,tsx}"]},R.configs["flat/all"]]:[];var y=[...v.configs["flat/recommended-with-json"],...v.configs["flat/prettier"]];var{readJSONSync:J}=T,M=function(){try{let p=J(resolve(process.cwd(),"node_modules/react/package.json"));return !!(p&&_.satisfies(p.version,">=17"))}catch{return !1}}(),N=["**/*.{tsx,jsx}"],U={parser:parser,parserOptions:{ecmaFeatures:{jsx:!0,experimentalObjectRestSpread:!0,impliedStrict:!0}},globals:{...s.serviceworker,...s.worker,...s.builtin,...s.browser}},V=[{plugins:{react:c$1,"react-hooks":w,"jsx-a11y":h,"react-refresh":E},languageOptions:U,settings:{react:{version:"detect"}}},{files:N,rules:Object.assign({"react-refresh/only-export-components":["error",{checkJS:!1,allowConstantExport:!0,allowExportNames:["action","loader","caseSensitive","index","handle","errorElement","ErrorBoundary","shouldRevalidate"]}]},c$1.configs.recommended.rules,w.configs.recommended.rules,h.configs.recommended.rules,M?c$1.configs["jsx-runtime"].rules:{})}],L=V;var A=["**/*.ts","**/*.tsx"],k=[...configs.recommended,...configs.stylistic].map(a=>({...a,files:A}));var we=[...j,...x,...y,...L,...k];
+var settings = {
+  "import/parsers": {
+    "@typescript-eslint/parser": [".ts", ".tsx"]
+  },
+  "import/resolver": {
+    typescript: {
+      alwaysTryTypes: true,
+      // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+      project: [
+        "tsconfig.json",
+        //
+        "packages/*/tsconfig.json"
+      ]
+    }
+  },
+  jsdoc: {
+    tagNamePreference: {
+      arg: "arg",
+      argument: "argument",
+      const: "const",
+      constructor: "constructor",
+      defaultvalue: "defaultvalue",
+      desc: "desc",
+      emits: "emits",
+      exception: "exception",
+      extends: "extends",
+      fileoverview: "fileoverview",
+      func: "func",
+      host: "host",
+      method: "method",
+      overview: "overview",
+      prop: "prop",
+      return: "return",
+      var: "var",
+      virtual: "virtual",
+      yield: "yield"
+    }
+  },
+  node: {
+    typescriptExtensionMap: [
+      ["", ".js"],
+      [".ts", ".js"],
+      [".cts", ".cjs"],
+      [".mts", ".mjs"],
+      [".tsx", ".jsx"]
+    ]
+  }
+};
+var base_default = [
+  {
+    files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
+    plugins: Object.assign({
+      n,
+      compat,
+      "simple-import-sort": simpleImportSort,
+      import: import_,
+      jsdoc,
+      unicorn
+    }),
+    settings,
+    rules: Object.assign(
+      compat.configs.recommended.rules,
+      unicorn.configs.recommended.rules,
+      isUsingReact ? import_.configs.react.rules : {},
+      isUsingTypescript ? import_.configs.typescript.rules : {},
+      isESModule ? n.configs["flat/recommended-module"].rules : n.configs["flat/recommended-script"].rules,
+      custom_default
+    )
+  },
+  isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
+  prettierRecommended,
+  {
+    ignores: [
+      "**/*.{css,less,stylus,pcss}",
+      "**/*.d.ts",
+      "**/npm/**",
+      "**/node_modules/**",
+      "**/build/**",
+      "**/dist/**",
+      "**/temp/**"
+    ]
+  }
+];
+var jest_default = isUsingJest ? [
+  {
+    files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"]
+  },
+  jest.configs["flat/all"]
+] : [];
+var json_default = [
+  ...jsonc.configs["flat/recommended-with-json"],
+  //
+  ...jsonc.configs["flat/prettier"]
+];
+var { readJSONSync } = fsExtra;
+var isReactVersionGreaterThan17 = function checkReactVersion() {
+  try {
+    const reactPackage = readJSONSync(resolve(process.cwd(), "node_modules/react/package.json"));
+    return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
+  } catch {
+    return false;
+  }
+}();
+var reactFiles = ["**/*.{tsx,jsx}"];
+var languageOptions = {
+  parser: parser,
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+      experimentalObjectRestSpread: true,
+      impliedStrict: true
+    }
+  },
+  globals: {
+    ...globals.serviceworker,
+    ...globals.worker,
+    ...globals.builtin,
+    ...globals.browser
+  }
+};
+var configs3 = [
+  {
+    plugins: {
+      react,
+      "react-hooks": reactHooks,
+      "jsx-a11y": jsxA11y,
+      "react-refresh": reactRefresh
+    },
+    languageOptions,
+    settings: { react: { version: "detect" } }
+  },
+  {
+    files: reactFiles,
+    rules: Object.assign(
+      {
+        // reactRefresh.configs.recommended.rules,
+        "react-refresh/only-export-components": [
+          "error",
+          {
+            checkJS: false,
+            allowConstantExport: true,
+            allowExportNames: [
+              `action`,
+              // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
+              `loader`,
+              // The route loader is called before the route renders and provides data for the element through useLoaderData.
+              `caseSensitive`,
+              // Instructs the route to match case or not.
+              `index`,
+              `handle`,
+              `errorElement`,
+              `ErrorBoundary`,
+              `shouldRevalidate`
+              // Using this API risks your UI getting out of sync with your data, use with caution!
+            ]
+          }
+        ]
+      },
+      react.configs.recommended.rules,
+      reactHooks.configs.recommended.rules,
+      jsxA11y.configs.recommended.rules,
+      isReactVersionGreaterThan17 ? react.configs["jsx-runtime"].rules : {}
+    )
+  }
+];
+var react_default = configs3;
+var files = ["**/*.ts", "**/*.tsx"];
+var typescript_default = [...configs.recommended, ...configs.stylistic].map((cfg) => ({ ...cfg, files }));
 
-export { we as default };
+// src/flat.ts
+var config = [...base_default, ...jest_default, ...json_default, ...react_default, ...typescript_default];
+var flat_default = config;
+
+export { flat_default as default };
