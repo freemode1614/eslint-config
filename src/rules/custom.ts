@@ -26,6 +26,7 @@ export default {
     {
       replacements: {
         useRef: false,
+        props: false,
       },
     },
   ],
