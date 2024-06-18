@@ -32,7 +32,7 @@ export default {
     "warn",
     {
       case: "camelCase",
-      ignore: [/API/, /JSON/, /App/],
+      ignore: [/API/, /JSON/, /App/, /^@/, /^$/],
     },
   ],
   "unicorn/prefer-set-has": "warn",

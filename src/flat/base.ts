@@ -3,7 +3,6 @@ import * as compat from "eslint-plugin-compat";
 import * as import_ from "eslint-plugin-import";
 import jsdoc from "eslint-plugin-jsdoc";
 import n from "eslint-plugin-n";
-import prettierRecommended from "eslint-plugin-prettier/recommended";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import unicorn from "eslint-plugin-unicorn";
 
@@ -75,11 +74,10 @@ export default [
       isUsingReact ? import_.configs.react.rules : {},
       isUsingTypescript ? import_.configs.typescript.rules : {},
       isESModule ? n.configs["flat/recommended-module"].rules : n.configs["flat/recommended-script"].rules,
+      isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"].rules : jsdoc.configs["flat/recommended"],
       customRules,
     ),
   },
-  isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
-  prettierRecommended,
   {
     ignores: [
       "**/*.{css,less,stylus,pcss}",
