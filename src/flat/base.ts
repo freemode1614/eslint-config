@@ -68,6 +68,8 @@ export default [
       unicorn,
     }),
     settings,
+  },
+  {
     rules: Object.assign(
       compat.configs.recommended.rules,
       unicorn.configs.recommended.rules,
