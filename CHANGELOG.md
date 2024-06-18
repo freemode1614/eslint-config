@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.2
+
+### Patch Changes
+
+- chore: fix rules issue in typescript project
+
 ## 0.2.1
 
 ### Patch Changes
