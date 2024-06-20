@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.3
+
+### Patch Changes
+
+- chore: fix flat config issue
+
 ## 0.2.2
 
 ### Patch Changes

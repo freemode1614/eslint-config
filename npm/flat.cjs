@@ -1,326 +1,63 @@
 'use strict';
 
-var compat = require('eslint-plugin-compat');
-var jsdoc = require('eslint-plugin-jsdoc');
-var jsonc = require('eslint-plugin-jsonc');
-var n = require('eslint-plugin-n');
-var prettier = require('eslint-plugin-prettier/recommended');
-var importSort = require('eslint-plugin-simple-import-sort');
-var unicorn = require('eslint-plugin-unicorn');
+var F = require('eslint-plugin-compat');
+var u = require('eslint-plugin-jsdoc');
+var t = require('eslint-plugin-jsonc');
+var g = require('eslint-plugin-n');
+var J = require('eslint-plugin-prettier/recommended');
+var q = require('eslint-plugin-simple-import-sort');
+var N = require('eslint-plugin-unicorn');
 var path = require('path');
-var fsExtra = require('fs-extra');
-var jestPlugin = require('eslint-plugin-jest');
-var jsxA11y = require('eslint-plugin-jsx-a11y');
-var react = require('eslint-plugin-react');
-var reactHooks = require('eslint-plugin-react-hooks');
-var reactRefresh = require('eslint-plugin-react-refresh');
-var globals = require('globals');
-var semver = require('semver');
+var R = require('fs-extra');
+var f = require('eslint-plugin-jest');
+var v = require('eslint-plugin-jsx-a11y');
+var m = require('eslint-plugin-react');
+var y = require('eslint-plugin-react-hooks');
+var A = require('eslint-plugin-react-refresh');
+var n = require('globals');
+var _ = require('semver');
 var typescriptEslint = require('typescript-eslint');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
-  if (e && e.__esModule) return e;
-  var n = Object.create(null);
-  if (e) {
-    Object.keys(e).forEach(function (k) {
-      if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
-        Object.defineProperty(n, k, d.get ? d : {
-          enumerable: true,
-          get: function () { return e[k]; }
-        });
-      }
-    });
-  }
-  n.default = e;
-  return Object.freeze(n);
+	if (e && e.__esModule) return e;
+	var n = Object.create(null);
+	if (e) {
+		Object.keys(e).forEach(function (k) {
+			if (k !== 'default') {
+				var d = Object.getOwnPropertyDescriptor(e, k);
+				Object.defineProperty(n, k, d.get ? d : {
+					enumerable: true,
+					get: function () { return e[k]; }
+				});
+			}
+		});
+	}
+	n.default = e;
+	return Object.freeze(n);
 }
 
-var compat__default = /*#__PURE__*/_interopDefault(compat);
-var jsdoc__default = /*#__PURE__*/_interopDefault(jsdoc);
-var jsonc__default = /*#__PURE__*/_interopDefault(jsonc);
+var F__default = /*#__PURE__*/_interopDefault(F);
+var u__default = /*#__PURE__*/_interopDefault(u);
+var t__default = /*#__PURE__*/_interopDefault(t);
+var g__default = /*#__PURE__*/_interopDefault(g);
+var J__default = /*#__PURE__*/_interopDefault(J);
+var q__default = /*#__PURE__*/_interopDefault(q);
+var N__default = /*#__PURE__*/_interopDefault(N);
+var R__default = /*#__PURE__*/_interopDefault(R);
+var f__namespace = /*#__PURE__*/_interopNamespace(f);
+var v__default = /*#__PURE__*/_interopDefault(v);
+var m__default = /*#__PURE__*/_interopDefault(m);
+var y__default = /*#__PURE__*/_interopDefault(y);
+var A__default = /*#__PURE__*/_interopDefault(A);
 var n__default = /*#__PURE__*/_interopDefault(n);
-var prettier__default = /*#__PURE__*/_interopDefault(prettier);
-var importSort__default = /*#__PURE__*/_interopDefault(importSort);
-var unicorn__default = /*#__PURE__*/_interopDefault(unicorn);
-var fsExtra__default = /*#__PURE__*/_interopDefault(fsExtra);
-var jestPlugin__namespace = /*#__PURE__*/_interopNamespace(jestPlugin);
-var jsxA11y__default = /*#__PURE__*/_interopDefault(jsxA11y);
-var react__default = /*#__PURE__*/_interopDefault(react);
-var reactHooks__default = /*#__PURE__*/_interopDefault(reactHooks);
-var reactRefresh__default = /*#__PURE__*/_interopDefault(reactRefresh);
-var globals__default = /*#__PURE__*/_interopDefault(globals);
-var semver__default = /*#__PURE__*/_interopDefault(semver);
+var ___default = /*#__PURE__*/_interopDefault(_);
 
-// src/flat/base.ts
-var { readJSONSync } = fsExtra__default.default;
-var package_ = readJSONSync(path.resolve(process.cwd(), "package.json"), {
-  throws: false
-});
-if (!package_) {
-  throw new Error(
-    "No `package.json` found in local, make sure you using eslint in a valid nodejs package which include a `package.json` file."
-  );
-}
-var { dependencies = {}, devDependencies = {}, peerDependencies = {} } = package_;
-var localProjectDeps = Object.keys(Object.assign({}, dependencies, devDependencies, peerDependencies));
-var isUsingReact = localProjectDeps.includes("react");
-var isUsingPrettier = localProjectDeps.includes("prettier");
-var isUsingTypescript = localProjectDeps.includes("typescript");
-var isUsingJest = localProjectDeps.includes("jest");
-var isESModule = package_.type === "module";
-console.log(
-  "isUsingReact ->",
-  isUsingReact,
-  "\n",
-  "isUsingPrettier ->",
-  isUsingPrettier,
-  "\n",
-  "isUsingTypescript ->",
-  isUsingTypescript,
-  "\n",
-  "isUsingJest ->",
-  isUsingJest,
-  "\n",
-  "isESModule ->",
-  isESModule
-);
+var{readJSONSync:P}=R__default.default,i=P(path.resolve(process.cwd(),"package.json"),{throws:!1});if(!i)throw new Error("No `package.json` found in local, make sure you using eslint in a valid nodejs package which include a `package.json` file.");var{dependencies:U={},devDependencies:E={},peerDependencies:O={}}=i,s=Object.keys(Object.assign({},U,E,O)),c=s.includes("react"),C=s.includes("prettier"),e=s.includes("typescript"),a=s.includes("jest"),o=i.type==="module";console.log("isUsingReact ->",c,`
+`,"isUsingPrettier ->",C,`
+`,"isUsingTypescript ->",e,`
+`,"isUsingJest ->",a,`
+`,"isESModule ->",o);var d={"simple-import-sort/imports":"error","simple-import-sort/exports":"error","jsdoc/require-jsdoc":e?"off":"warn","jsdoc/require-returns":e?"off":"warn","jsdoc/require-returns-description":e?"off":"warn","jsdoc/require-param":e?"off":"warn","jsdoc/require-param-description":e?"off":"warn","jsdoc/check-param-names":e?"off":"warn","n/no-missing-import":"off","n/no-missing-require":"off","unicorn/prefer-module":o?"error":"off","unicorn/switch-case-braces":"off","unicorn/prevent-abbreviations":["warn",{replacements:{useRef:{useReference:!1},ref:{reference:!1},props:{properties:!1}}}],"unicorn/filename-case":["warn",{case:"camelCase",ignore:[/API/,/JSON/,/App/,/^@/,/^$/]}],"unicorn/prefer-set-has":"warn","unicorn/prefer-string-replace-all":"off","unicorn/no-array-callback-reference":"off","unicorn/no-array-push-push":"warn","unicorn/prefer-export-from":"warn","unicorn/no-array-for-each":"off","unicorn/import-style":["warn"],"unicorn/prefer-spread":"warn","unicorn/no-for-loop":"warn","unicorn/no-null":c?"off":"warn","no-case-declarations":"off"};var M={jsdoc:{tagNamePreference:{arg:"arg",argument:"argument",const:"const",constructor:"constructor",defaultvalue:"defaultvalue",desc:"desc",emits:"emits",exception:"exception",extends:"extends",fileoverview:"fileoverview",func:"func",host:"host",method:"method",overview:"overview",prop:"prop",return:"return",var:"var",virtual:"virtual",yield:"yield"}}},j=[{files:["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],plugins:{unicorn:N__default.default,"simple-import-sort":q__default.default},settings:M},...t__default.default.configs["flat/recommended-with-jsonc"],...t__default.default.configs["flat/recommended-with-json"],...t__default.default.configs["flat/recommended-with-json5"],...t__default.default.configs["flat/prettier"],F__default.default.configs["flat/recommended"],o?g__default.default.configs["flat/recommended-module"]:g__default.default.configs["flat/recommended-script"],e?u__default.default.configs["flat/recommended-typescript"]:u__default.default.configs["flat/recommended"],J__default.default,{rules:Object.assign(d)},{ignores:["**/*.{css,less,stylus,pcss}","**/*.d.ts","**/npm/**","**/node_modules/**","**/build/**","**/dist/**","**/temp/**"]}];var x=a?[{files:["**/*.{spec,test}.{js,ts,jsx,tsx}","tests?/*.{js,ts,jsx,tsx}"],...f__namespace.configs["flat/recommended"],rules:{...f__namespace.configs["flat/recommended"].rules}}]:[];var h=[...t__default.default.configs["flat/recommended-with-json"],...t__default.default.configs["flat/prettier"]];var{readJSONSync:B}=R__default.default,G=function(){try{let l=B(path.resolve(process.cwd(),"node_modules/react/package.json"));return !!(l&&___default.default.satisfies(l.version,">=17"))}catch{return !1}}(),H=["**/*.{tsx,jsx}"],I={parser:typescriptEslint.parser,parserOptions:{ecmaFeatures:{jsx:!0,experimentalObjectRestSpread:!0,impliedStrict:!0}},globals:{...n__default.default.serviceworker,...n__default.default.worker,...n__default.default.builtin,...n__default.default.browser}},$=[{plugins:{react:m__default.default,"react-hooks":y__default.default,"jsx-a11y":v__default.default,"react-refresh":A__default.default},languageOptions:I,settings:{react:{version:"detect"}}},{files:H,rules:Object.assign({"react-refresh/only-export-components":["error",{checkJS:!1,allowConstantExport:!0,allowExportNames:["action","loader","caseSensitive","index","handle","errorElement","ErrorBoundary","shouldRevalidate"]}]},m__default.default.configs.recommended.rules,y__default.default.configs.recommended.rules,v__default.default.configs.recommended.rules,G?m__default.default.configs["jsx-runtime"].rules:{})}],k=$;var z=["**/*.ts","**/*.tsx"],L=[...typescriptEslint.configs.recommended,...typescriptEslint.configs.stylistic].map(p=>({...p,files:z}));var K=[...j,...x,...h,...k,...L],Ae=K;
 
-// src/rules/custom.ts
-var custom_default = {
-  "simple-import-sort/imports": "error",
-  "simple-import-sort/exports": "error",
-  // While using typescript, should ignore below rules for JSDoc
-  "jsdoc/require-jsdoc": isUsingTypescript ? "off" : "warn",
-  "jsdoc/require-returns": isUsingTypescript ? "off" : "warn",
-  "jsdoc/require-returns-description": isUsingTypescript ? "off" : "warn",
-  "jsdoc/require-param": isUsingTypescript ? "off" : "warn",
-  "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
-  "jsdoc/check-param-names": isUsingTypescript ? "off" : "warn",
-  // TODO: Can't setup the right configuration for this, so ignore now.
-  "n/no-missing-import": "off",
-  "n/no-missing-require": "off",
-  // unicorn rules customization
-  "unicorn/prefer-module": isESModule ? "error" : "off",
-  "unicorn/switch-case-braces": "off",
-  "unicorn/prevent-abbreviations": [
-    "warn",
-    {
-      replacements: {
-        useRef: {
-          useReference: false
-        },
-        ref: {
-          reference: false
-        },
-        props: {
-          properties: false
-        }
-      }
-    }
-  ],
-  "unicorn/filename-case": [
-    "warn",
-    {
-      case: "camelCase",
-      ignore: [
-        /API/,
-        /JSON/,
-        // Entry file name for most of the scaffold
-        /App/,
-        // For dynamic router name prefix
-        /^@/,
-        // For optional router name prefix
-        /^$/
-      ]
-    }
-  ],
-  "unicorn/prefer-set-has": "warn",
-  "unicorn/prefer-string-replace-all": "off",
-  "unicorn/no-array-callback-reference": "off",
-  "unicorn/no-array-push-push": "warn",
-  "unicorn/prefer-export-from": "warn",
-  "unicorn/no-array-for-each": "off",
-  "unicorn/import-style": ["warn"],
-  "unicorn/prefer-spread": "warn",
-  "unicorn/no-for-loop": "warn",
-  // Disable no-null rule, since `null` is a valid ReactNode for function component.
-  "unicorn/no-null": isUsingReact ? "off" : "warn",
-  "no-case-declarations": "off"
-};
-
-// src/flat/base.ts
-var settings = {
-  // "import/parsers": {
-  //   "@typescript-eslint/parser": [".ts", ".tsx"],
-  // },
-  // "import/resolver": {
-  //   typescript: {
-  //     alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-  //     project: [
-  //       "tsconfig.json", //
-  //       "packages/*/tsconfig.json",
-  //     ],
-  //   },
-  // },
-  jsdoc: {
-    tagNamePreference: {
-      arg: "arg",
-      argument: "argument",
-      const: "const",
-      constructor: "constructor",
-      defaultvalue: "defaultvalue",
-      desc: "desc",
-      emits: "emits",
-      exception: "exception",
-      extends: "extends",
-      fileoverview: "fileoverview",
-      func: "func",
-      host: "host",
-      method: "method",
-      overview: "overview",
-      prop: "prop",
-      return: "return",
-      var: "var",
-      virtual: "virtual",
-      yield: "yield"
-    }
-  }
-  // node: {
-  //   typescriptExtensionMap: [
-  //     ["", ".js"],
-  //     [".ts", ".js"],
-  //     [".cts", ".cjs"],
-  //     [".mts", ".mjs"],
-  //     [".tsx", ".jsx"],
-  //   ],
-  // },
-};
-var base_default = [
-  {
-    files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
-    plugins: {
-      unicorn: unicorn__default.default,
-      "simple-import-sort": importSort__default.default
-    },
-    settings
-  },
-  ...jsonc__default.default.configs["flat/recommended-with-jsonc"],
-  ...jsonc__default.default.configs["flat/recommended-with-json"],
-  ...jsonc__default.default.configs["flat/recommended-with-json5"],
-  ...jsonc__default.default.configs["flat/prettier"],
-  compat__default.default.configs["flat/recommended"],
-  isESModule ? n__default.default.configs["flat/recommended-module"] : n__default.default.configs["flat/recommended-script"],
-  isUsingTypescript ? jsdoc__default.default.configs["flat/recommended-typescript"] : jsdoc__default.default.configs["flat/recommended"],
-  prettier__default.default,
-  {
-    rules: Object.assign(custom_default)
-  },
-  {
-    ignores: [
-      "**/*.{css,less,stylus,pcss}",
-      "**/*.d.ts",
-      "**/npm/**",
-      "**/node_modules/**",
-      "**/build/**",
-      "**/dist/**",
-      "**/temp/**"
-    ]
-  }
-];
-var jest_default = isUsingJest ? [
-  {
-    files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"],
-    ...jestPlugin__namespace.configs["flat/recommended"],
-    rules: {
-      ...jestPlugin__namespace.configs["flat/recommended"].rules
-    }
-  }
-] : [];
-var json_default = [
-  ...jsonc__default.default.configs["flat/recommended-with-json"],
-  //
-  ...jsonc__default.default.configs["flat/prettier"]
-];
-var { readJSONSync: readJSONSync2 } = fsExtra__default.default;
-var isReactVersionGreaterThan17 = function checkReactVersion() {
-  try {
-    const reactPackage = readJSONSync2(path.resolve(process.cwd(), "node_modules/react/package.json"));
-    return !!(reactPackage && semver__default.default.satisfies(reactPackage.version, ">=17"));
-  } catch {
-    return false;
-  }
-}();
-var reactFiles = ["**/*.{tsx,jsx}"];
-var languageOptions = {
-  parser: typescriptEslint.parser,
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-      experimentalObjectRestSpread: true,
-      impliedStrict: true
-    }
-  },
-  globals: {
-    ...globals__default.default.serviceworker,
-    ...globals__default.default.worker,
-    ...globals__default.default.builtin,
-    ...globals__default.default.browser
-  }
-};
-var configs2 = [
-  {
-    plugins: {
-      react: react__default.default,
-      "react-hooks": reactHooks__default.default,
-      "jsx-a11y": jsxA11y__default.default,
-      "react-refresh": reactRefresh__default.default
-    },
-    languageOptions,
-    settings: { react: { version: "detect" } }
-  },
-  {
-    files: reactFiles,
-    rules: Object.assign(
-      {
-        // reactRefresh.configs.recommended.rules,
-        "react-refresh/only-export-components": [
-          "error",
-          {
-            checkJS: false,
-            allowConstantExport: true,
-            allowExportNames: [
-              `action`,
-              // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
-              `loader`,
-              // The route loader is called before the route renders and provides data for the element through useLoaderData.
-              `caseSensitive`,
-              // Instructs the route to match case or not.
-              `index`,
-              `handle`,
-              `errorElement`,
-              `ErrorBoundary`,
-              `shouldRevalidate`
-              // Using this API risks your UI getting out of sync with your data, use with caution!
-            ]
-          }
-        ]
-      },
-      react__default.default.configs.recommended.rules,
-      reactHooks__default.default.configs.recommended.rules,
-      jsxA11y__default.default.configs.recommended.rules,
-      isReactVersionGreaterThan17 ? react__default.default.configs["jsx-runtime"].rules : {}
-    )
-  }
-];
-var react_default = configs2;
-var files = ["**/*.ts", "**/*.tsx"];
-var typescript_default = [...typescriptEslint.configs.recommended, ...typescriptEslint.configs.stylistic].map((cfg) => ({ ...cfg, files }));
-
-// src/flat.ts
-var config = [...base_default, ...jest_default, ...json_default, ...react_default, ...typescript_default];
-var flat_default = config;
-
-module.exports = flat_default;
+module.exports = Ae;
