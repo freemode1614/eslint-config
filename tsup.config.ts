@@ -11,8 +11,6 @@ export default defineConfig([
     dts: true,
     shims: true,
     sourcemap: false,
-    treeshake: true,
     clean: isProduction,
-    minify: isProduction,
   },
 ]);
