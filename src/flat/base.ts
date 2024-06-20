@@ -60,7 +60,6 @@ export default [
   {
     files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
     plugins: Object.assign({
-      n,
       compat,
       "simple-import-sort": simpleImportSort,
       import: import_,
@@ -69,13 +68,13 @@ export default [
     }),
     settings,
   },
+  isESModule ? n.configs["flat/recommended-module"] : n.configs["flat/recommended-script"],
   {
     rules: Object.assign(
       compat.configs.recommended.rules,
       unicorn.configs.recommended.rules,
       isUsingReact ? import_.configs.react.rules : {},
       isUsingTypescript ? import_.configs.typescript.rules : {},
-      isESModule ? n.configs["flat/recommended-module"].rules : n.configs["flat/recommended-script"].rules,
       isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"].rules : jsdoc.configs["flat/recommended"],
       customRules,
     ),
