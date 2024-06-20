@@ -1,16 +1,15 @@
 'use strict';
 
-var prettierRecommended = require('eslint-plugin-prettier/recommended');
 var compat = require('eslint-plugin-compat');
-var import_ = require('eslint-plugin-import');
 var jsdoc = require('eslint-plugin-jsdoc');
+var jsonc = require('eslint-plugin-jsonc');
 var n = require('eslint-plugin-n');
-var simpleImportSort = require('eslint-plugin-simple-import-sort');
+var prettier = require('eslint-plugin-prettier/recommended');
+var importSort = require('eslint-plugin-simple-import-sort');
 var unicorn = require('eslint-plugin-unicorn');
 var path = require('path');
 var fsExtra = require('fs-extra');
-var jest = require('eslint-plugin-jest');
-var jsonc = require('eslint-plugin-jsonc');
+var jestPlugin = require('eslint-plugin-jest');
 var jsxA11y = require('eslint-plugin-jsx-a11y');
 var react = require('eslint-plugin-react');
 var reactHooks = require('eslint-plugin-react-hooks');
@@ -39,16 +38,15 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var prettierRecommended__default = /*#__PURE__*/_interopDefault(prettierRecommended);
-var compat__namespace = /*#__PURE__*/_interopNamespace(compat);
-var import___namespace = /*#__PURE__*/_interopNamespace(import_);
+var compat__default = /*#__PURE__*/_interopDefault(compat);
 var jsdoc__default = /*#__PURE__*/_interopDefault(jsdoc);
+var jsonc__default = /*#__PURE__*/_interopDefault(jsonc);
 var n__default = /*#__PURE__*/_interopDefault(n);
-var simpleImportSort__default = /*#__PURE__*/_interopDefault(simpleImportSort);
+var prettier__default = /*#__PURE__*/_interopDefault(prettier);
+var importSort__default = /*#__PURE__*/_interopDefault(importSort);
 var unicorn__default = /*#__PURE__*/_interopDefault(unicorn);
 var fsExtra__default = /*#__PURE__*/_interopDefault(fsExtra);
-var jest__default = /*#__PURE__*/_interopDefault(jest);
-var jsonc__default = /*#__PURE__*/_interopDefault(jsonc);
+var jestPlugin__namespace = /*#__PURE__*/_interopNamespace(jestPlugin);
 var jsxA11y__default = /*#__PURE__*/_interopDefault(jsxA11y);
 var react__default = /*#__PURE__*/_interopDefault(react);
 var reactHooks__default = /*#__PURE__*/_interopDefault(reactHooks);
@@ -56,7 +54,7 @@ var reactRefresh__default = /*#__PURE__*/_interopDefault(reactRefresh);
 var globals__default = /*#__PURE__*/_interopDefault(globals);
 var semver__default = /*#__PURE__*/_interopDefault(semver);
 
-// src/flat.ts
+// src/flat/base.ts
 var { readJSONSync } = fsExtra__default.default;
 var package_ = readJSONSync(path.resolve(process.cwd(), "package.json"), {
   throws: false
@@ -155,20 +153,18 @@ var custom_default = {
 
 // src/flat/base.ts
 var settings = {
-  "import/parsers": {
-    "@typescript-eslint/parser": [".ts", ".tsx"]
-  },
-  "import/resolver": {
-    typescript: {
-      alwaysTryTypes: true,
-      // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-      project: [
-        "tsconfig.json",
-        //
-        "packages/*/tsconfig.json"
-      ]
-    }
-  },
+  // "import/parsers": {
+  //   "@typescript-eslint/parser": [".ts", ".tsx"],
+  // },
+  // "import/resolver": {
+  //   typescript: {
+  //     alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+  //     project: [
+  //       "tsconfig.json", //
+  //       "packages/*/tsconfig.json",
+  //     ],
+  //   },
+  // },
   jsdoc: {
     tagNamePreference: {
       arg: "arg",
@@ -191,39 +187,36 @@ var settings = {
       virtual: "virtual",
       yield: "yield"
     }
-  },
-  node: {
-    typescriptExtensionMap: [
-      ["", ".js"],
-      [".ts", ".js"],
-      [".cts", ".cjs"],
-      [".mts", ".mjs"],
-      [".tsx", ".jsx"]
-    ]
   }
+  // node: {
+  //   typescriptExtensionMap: [
+  //     ["", ".js"],
+  //     [".ts", ".js"],
+  //     [".cts", ".cjs"],
+  //     [".mts", ".mjs"],
+  //     [".tsx", ".jsx"],
+  //   ],
+  // },
 };
 var base_default = [
   {
     files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
-    plugins: Object.assign({
-      compat: compat__namespace,
-      "simple-import-sort": simpleImportSort__default.default,
-      import: import___namespace,
-      jsdoc: jsdoc__default.default,
-      unicorn: unicorn__default.default
-    }),
+    plugins: {
+      unicorn: unicorn__default.default,
+      "simple-import-sort": importSort__default.default
+    },
     settings
   },
+  ...jsonc__default.default.configs["flat/recommended-with-jsonc"],
+  ...jsonc__default.default.configs["flat/recommended-with-json"],
+  ...jsonc__default.default.configs["flat/recommended-with-json5"],
+  ...jsonc__default.default.configs["flat/prettier"],
+  compat__default.default.configs["flat/recommended"],
   isESModule ? n__default.default.configs["flat/recommended-module"] : n__default.default.configs["flat/recommended-script"],
+  isUsingTypescript ? jsdoc__default.default.configs["flat/recommended-typescript"] : jsdoc__default.default.configs["flat/recommended"],
+  prettier__default.default,
   {
-    rules: Object.assign(
-      compat__namespace.configs.recommended.rules,
-      unicorn__default.default.configs.recommended.rules,
-      isUsingReact ? import___namespace.configs.react.rules : {},
-      isUsingTypescript ? import___namespace.configs.typescript.rules : {},
-      isUsingTypescript ? jsdoc__default.default.configs["flat/recommended-typescript"].rules : jsdoc__default.default.configs["flat/recommended"],
-      custom_default
-    )
+    rules: Object.assign(custom_default)
   },
   {
     ignores: [
@@ -239,9 +232,12 @@ var base_default = [
 ];
 var jest_default = isUsingJest ? [
   {
-    files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"]
-  },
-  jest__default.default.configs["flat/all"]
+    files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"],
+    ...jestPlugin__namespace.configs["flat/recommended"],
+    rules: {
+      ...jestPlugin__namespace.configs["flat/recommended"].rules
+    }
+  }
 ] : [];
 var json_default = [
   ...jsonc__default.default.configs["flat/recommended-with-json"],
@@ -274,7 +270,7 @@ var languageOptions = {
     ...globals__default.default.browser
   }
 };
-var configs3 = [
+var configs2 = [
   {
     plugins: {
       react: react__default.default,
@@ -319,12 +315,12 @@ var configs3 = [
     )
   }
 ];
-var react_default = configs3;
+var react_default = configs2;
 var files = ["**/*.ts", "**/*.tsx"];
 var typescript_default = [...typescriptEslint.configs.recommended, ...typescriptEslint.configs.stylistic].map((cfg) => ({ ...cfg, files }));
 
 // src/flat.ts
-var config = [...base_default, ...jest_default, ...json_default, ...react_default, ...typescript_default, prettierRecommended__default.default];
+var config = [...base_default, ...jest_default, ...json_default, ...react_default, ...typescript_default];
 var flat_default = config;
 
 module.exports = flat_default;

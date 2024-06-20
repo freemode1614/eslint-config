@@ -1,13 +1,12 @@
-import { isESModule, isUsingReact, isUsingTypescript, custom_default, isUsingJest } from './chunk-K45L7TJT.js';
-import prettierRecommended from 'eslint-plugin-prettier/recommended';
-import * as compat from 'eslint-plugin-compat';
-import * as import_ from 'eslint-plugin-import';
+import { isESModule, isUsingTypescript, custom_default, isUsingJest } from './chunk-K45L7TJT.js';
+import compat from 'eslint-plugin-compat';
 import jsdoc from 'eslint-plugin-jsdoc';
-import n from 'eslint-plugin-n';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import unicorn from 'eslint-plugin-unicorn';
-import jest from 'eslint-plugin-jest';
 import jsonc from 'eslint-plugin-jsonc';
+import n from 'eslint-plugin-n';
+import prettier from 'eslint-plugin-prettier/recommended';
+import importSort from 'eslint-plugin-simple-import-sort';
+import unicorn from 'eslint-plugin-unicorn';
+import * as jestPlugin from 'eslint-plugin-jest';
 import { resolve } from 'node:path';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
@@ -19,20 +18,18 @@ import semver from 'semver';
 import { parser, configs } from 'typescript-eslint';
 
 var settings = {
-  "import/parsers": {
-    "@typescript-eslint/parser": [".ts", ".tsx"]
-  },
-  "import/resolver": {
-    typescript: {
-      alwaysTryTypes: true,
-      // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-      project: [
-        "tsconfig.json",
-        //
-        "packages/*/tsconfig.json"
-      ]
-    }
-  },
+  // "import/parsers": {
+  //   "@typescript-eslint/parser": [".ts", ".tsx"],
+  // },
+  // "import/resolver": {
+  //   typescript: {
+  //     alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+  //     project: [
+  //       "tsconfig.json", //
+  //       "packages/*/tsconfig.json",
+  //     ],
+  //   },
+  // },
   jsdoc: {
     tagNamePreference: {
       arg: "arg",
@@ -55,39 +52,36 @@ var settings = {
       virtual: "virtual",
       yield: "yield"
     }
-  },
-  node: {
-    typescriptExtensionMap: [
-      ["", ".js"],
-      [".ts", ".js"],
-      [".cts", ".cjs"],
-      [".mts", ".mjs"],
-      [".tsx", ".jsx"]
-    ]
   }
+  // node: {
+  //   typescriptExtensionMap: [
+  //     ["", ".js"],
+  //     [".ts", ".js"],
+  //     [".cts", ".cjs"],
+  //     [".mts", ".mjs"],
+  //     [".tsx", ".jsx"],
+  //   ],
+  // },
 };
 var base_default = [
   {
     files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
-    plugins: Object.assign({
-      compat,
-      "simple-import-sort": simpleImportSort,
-      import: import_,
-      jsdoc,
-      unicorn
-    }),
+    plugins: {
+      unicorn,
+      "simple-import-sort": importSort
+    },
     settings
   },
+  ...jsonc.configs["flat/recommended-with-jsonc"],
+  ...jsonc.configs["flat/recommended-with-json"],
+  ...jsonc.configs["flat/recommended-with-json5"],
+  ...jsonc.configs["flat/prettier"],
+  compat.configs["flat/recommended"],
   isESModule ? n.configs["flat/recommended-module"] : n.configs["flat/recommended-script"],
+  isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
+  prettier,
   {
-    rules: Object.assign(
-      compat.configs.recommended.rules,
-      unicorn.configs.recommended.rules,
-      isUsingReact ? import_.configs.react.rules : {},
-      isUsingTypescript ? import_.configs.typescript.rules : {},
-      isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"].rules : jsdoc.configs["flat/recommended"],
-      custom_default
-    )
+    rules: Object.assign(custom_default)
   },
   {
     ignores: [
@@ -103,9 +97,12 @@ var base_default = [
 ];
 var jest_default = isUsingJest ? [
   {
-    files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"]
-  },
-  jest.configs["flat/all"]
+    files: ["**/*.{spec,test}.{js,ts,jsx,tsx}", "tests?/*.{js,ts,jsx,tsx}"],
+    ...jestPlugin.configs["flat/recommended"],
+    rules: {
+      ...jestPlugin.configs["flat/recommended"].rules
+    }
+  }
 ] : [];
 var json_default = [
   ...jsonc.configs["flat/recommended-with-json"],
@@ -138,7 +135,7 @@ var languageOptions = {
     ...globals.browser
   }
 };
-var configs3 = [
+var configs2 = [
   {
     plugins: {
       react,
@@ -183,12 +180,12 @@ var configs3 = [
     )
   }
 ];
-var react_default = configs3;
+var react_default = configs2;
 var files = ["**/*.ts", "**/*.tsx"];
 var typescript_default = [...configs.recommended, ...configs.stylistic].map((cfg) => ({ ...cfg, files }));
 
 // src/flat.ts
-var config = [...base_default, ...jest_default, ...json_default, ...react_default, ...typescript_default, prettierRecommended];
+var config = [...base_default, ...jest_default, ...json_default, ...react_default, ...typescript_default];
 var flat_default = config;
 
 export { flat_default as default };

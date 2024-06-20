@@ -17,3 +17,8 @@ export default config;
 const config = require("@moccona/eslint-config");
 module.exports = config;
 ```
+
+## Plugins that need to be added after support flat configuration
+
+- eslint-plugin-import
+  - eslint-plugin-resolver-typescript
