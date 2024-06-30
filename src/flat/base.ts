@@ -6,6 +6,7 @@ import jsonc from "eslint-plugin-jsonc";
 import n from "eslint-plugin-n";
 import prettier from "eslint-plugin-prettier/recommended";
 import importSort from "eslint-plugin-simple-import-sort";
+import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
 
 import customRules from "@/rules/custom";
@@ -75,6 +76,7 @@ export default [
   isESModule ? n.configs["flat/recommended-module"] : n.configs["flat/recommended-script"],
   isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
   prettier,
+  ...tailwind.configs["flat/recommended"],
   {
     rules: Object.assign(customRules),
   },

@@ -12,5 +12,6 @@
         "vue",
         "markdown",
         "json"
-    ]
+    ],
+    "eslint.useFlatConfig": true
 }

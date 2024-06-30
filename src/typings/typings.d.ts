@@ -31,3 +31,8 @@ declare module "eslint-plugin-react-refresh" {
 declare module "eslint-plugin-jest" {
   var configs;
 }
+
+declare module "eslint-plugin-tailwindcss" {
+  var configs;
+}
+
