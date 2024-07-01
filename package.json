@@ -32,7 +32,7 @@
   "author": "wp.l",
   "license": "ISC",
   "devDependencies": {
-    "@changesets/cli": "^2.27.6",
+    "@changesets/cli": "^2.27.7",
     "@moccona/prettierrc": "^0.0.2",
     "@types/eslint": "^8.56.10",
     "@types/fs-extra": "^11.0.4",
