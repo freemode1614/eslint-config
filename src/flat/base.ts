@@ -1,4 +1,4 @@
-import { Linter } from "eslint";
+import type { Linter } from "eslint";
 import compat from "eslint-plugin-compat";
 // import * as importPlugin from "eslint-plugin-import";
 import jsdoc from "eslint-plugin-jsdoc";
@@ -48,15 +48,6 @@ const settings: Linter.Config["settings"] = {
       yield: "yield",
     },
   },
-  // node: {
-  //   typescriptExtensionMap: [
-  //     ["", ".js"],
-  //     [".ts", ".js"],
-  //     [".cts", ".cjs"],
-  //     [".mts", ".mjs"],
-  //     [".tsx", ".jsx"],
-  //   ],
-  // },
 };
 
 export default [
