@@ -1,4 +1,4 @@
-import { resolve } from "node:path";
+import nodePath from "node:path";
 
 import { Linter } from "eslint";
 import { readJSONSync } from "fs-extra";
@@ -7,7 +7,7 @@ import semver from "semver";
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.
   try {
-    const reactPackage = readJSONSync(resolve(process.cwd(), "node_modules/react/package.json"));
+    const reactPackage = readJSONSync(nodePath.resolve(process.cwd(), "node_modules/react/package.json"));
     return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
   } catch {
     // Can't find react in local, just ignore the error and return a false.

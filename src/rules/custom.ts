@@ -25,32 +25,24 @@ export default {
     "warn",
     {
       replacements: {
-        useRef: {
-          useReference: false,
-        },
-        ref: {
-          reference: false,
-        },
-        props: {
-          properties: false,
-        },
+        useRef: false,
+        ref: false,
+        props: false,
+        dir: false,
+        msg: false,
+        dev: false,
+        prod: false,
       },
     },
   ],
   "unicorn/filename-case": [
     "warn",
     {
-      case: "camelCase",
-      ignore: [
-        /API/,
-        /JSON/,
-        // Entry file name for most of the scaffold
-        /App/,
-        // For dynamic router name prefix
-        /^@/,
-        // For optional router name prefix
-        /^$/,
-      ],
+      case: {
+        camelCase: true,
+        pascalCase: true,
+      },
+      ignore: [/API/, /JSON/, /^App/, /^@/, /^$/],
     },
   ],
   "unicorn/prefer-set-has": "warn",
