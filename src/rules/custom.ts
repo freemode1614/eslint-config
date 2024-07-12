@@ -65,4 +65,6 @@ export default {
   // Disable no-null rule, since `null` is a valid ReactNode for function component.
   "unicorn/no-null": isUsingReact ? "off" : "warn",
   "no-case-declarations": "off",
+
+  "@typescript-eslint/consistent-type-definitions": "off",
 } as Partial<Linter.RulesRecord>;
