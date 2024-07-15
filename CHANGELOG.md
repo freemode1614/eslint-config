@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.6
+
+### Patch Changes
+
+- chore: remove prettier deps
+
 ## 0.2.5
 
 ### Patch Changes
