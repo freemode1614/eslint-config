@@ -10,7 +10,7 @@ import globals from "globals";
 import semver from "semver";
 import { parser as tsParser } from "typescript-eslint";
 
-const { readJSONSync } = fsExtra;
+const { readJSONSync, } = fsExtra;
 
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.
@@ -21,7 +21,7 @@ const isReactVersionGreaterThan17 = (function checkReactVersion() {
     // Can't find react in local, just ignore the error and return a false.
     return false;
   }
-})();
+}());
 
 const reactFiles = ["**/*.{tsx,jsx}"];
 
@@ -51,7 +51,7 @@ const configs: Linter.FlatConfig[] = [
       "react-refresh": reactRefresh,
     },
     languageOptions,
-    settings: { react: { version: "detect" } },
+    settings: { react: { version: "detect", }, },
   },
   {
     files: reactFiles,
@@ -64,24 +64,24 @@ const configs: Linter.FlatConfig[] = [
             checkJS: false,
             allowConstantExport: true,
             allowExportNames: [
-              `action`, // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
-              `loader`, // The route loader is called before the route renders and provides data for the element through useLoaderData.
-              `caseSensitive`, // Instructs the route to match case or not.
-              `index`,
-              `handle`,
-              `errorElement`,
-              `ErrorBoundary`,
-              `shouldRevalidate`, // Using this API risks your UI getting out of sync with your data, use with caution!
+              "action", // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
+              "loader", // The route loader is called before the route renders and provides data for the element through useLoaderData.
+              "caseSensitive", // Instructs the route to match case or not.
+              "index",
+              "handle",
+              "errorElement",
+              "ErrorBoundary",
+              "shouldRevalidate" // Using this API risks your UI getting out of sync with your data, use with caution!
             ],
-          },
+          }
         ],
       },
       react.configs.recommended.rules,
       reactHooks.configs.recommended.rules,
       jsxA11y.configs.recommended.rules,
-      isReactVersionGreaterThan17 ? react.configs["jsx-runtime"].rules : {},
+      isReactVersionGreaterThan17 ? react.configs["jsx-runtime"].rules : {}
     ),
-  },
+  }
 ];
 
 export default configs;

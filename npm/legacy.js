@@ -4,8 +4,9 @@ import {
   isUsingJest,
   isUsingPrettier,
   isUsingReact,
-  isUsingTypescript
-} from "./chunk-K45L7TJT.js";
+  isUsingTypescript,
+  styles_default
+} from "./chunk-UNFJOJDC.js";
 
 // src/rules/deprecated.ts
 var config = {
@@ -183,172 +184,8 @@ var config2 = {
 };
 var logic_default = config2;
 
-// src/rules/styles.ts
-var config3 = {
-  rules: {
-    "array-bracket-newline": ["warn", "consistent"],
-    // Enforce linebreaks after opening and before closing array brackets
-    "array-bracket-spacing": ["warn", "never"],
-    // Enforce consistent spacing inside array brackets
-    "array-element-newline": ["warn", "consistent"],
-    // Enforce line breaks after each array element
-    "arrow-parens": [
-      "warn",
-      "as-needed",
-      {
-        requireForBlockBody: true
-      }
-    ],
-    // Require parentheses around arrow function arguments
-    "arrow-spacing": ["warn", { before: true, after: true }],
-    // Enforce consistent spacing before and after the arrow in arrow functions
-    "block-spacing": ["warn", "always"],
-    // Disallow or enforce spaces inside of blocks after opening block and before closing block
-    "brace-style": ["warn", "1tbs"],
-    // Enforce consistent brace style for blocks
-    "comma-dangle": [
-      "error",
-      {
-        arrays: "never",
-        objects: "always",
-        imports: "never",
-        exports: "never",
-        functions: "never"
-      }
-    ],
-    // Require or disallow trailing commas
-    "comma-spacing": ["warn", { before: false, after: true }],
-    // Enforce consistent spacing before and after commas
-    "comma-style": ["warn", "last"],
-    // Enforce consistent comma style
-    "computed-property-spacing": ["warn", "never"],
-    // Enforce consistent spacing inside computed property brackets
-    "dot-location": ["warn", "object"],
-    // Enforce consistent newlines before and after dots
-    "eol-last": "off",
-    // Require or disallow newline at the end of files
-    "func-call-spacing": ["warn", "never"],
-    // Require or disallow spacing between function identifiers and their invocations
-    "function-call-argument-newline": ["warn", "consistent"],
-    // Enforce line breaks between arguments of a function call
-    "function-paren-newline": ["warn", "consistent"],
-    // Enforce consistent line breaks inside function parentheses
-    "generator-star-spacing": ["warn"],
-    // Enforce consistent spacing around `*` operators in generator functions
-    "implicit-arrow-linebreak": ["warn", "beside"],
-    // Enforce the location of arrow function bodies
-    indent: ["warn", 2],
-    // Enforce consistent indentation
-    "jsx-quotes": ["off"],
-    // Enforce the consistent use of either double or single quotes in JSX attributes
-    "key-spacing": ["warn", { beforeColon: false, afterColon: true }],
-    // Enforce consistent spacing between keys and values in object literal properties
-    "keyword-spacing": ["off"],
-    // Enforce consistent spacing before and after keywords
-    "line-comment-position": ["off", "above"],
-    // Enforce position of line comments
-    "linebreak-style": ["off"],
-    // Enforce consistent linebreak style
-    "lines-around-comment": [
-      "off",
-      {
-        beforeBlockComment: false,
-        beforeLineComment: true
-      }
-    ],
-    // Require empty lines around comments
-    "lines-between-class-members": ["off"],
-    // Require or disallow an empty line between class members
-    "max-len": ["off"],
-    // Enforce a maximum line length
-    "max-statements-per-line": ["off"],
-    // Enforce a maximum number of statements allowed per line
-    "multiline-ternary": ["off"],
-    // Enforce newlines between operands of ternary expressions
-    "new-parens": ["off"],
-    // Enforce or disallow parentheses when invoking a constructor with no arguments
-    "newline-per-chained-call": [
-      "warn",
-      {
-        ignoreChainWithDepth: 1
-      }
-    ],
-    // Require a newline after each call in a method chain
-    "no-extra-parens": ["off"],
-    // Disallow unnecessary parentheses
-    "no-mixed-spaces-and-tabs": ["off"],
-    // Disallow mixed spaces and tabs for indentation
-    "no-multi-spaces": ["off"],
-    // Disallow multiple spaces
-    "no-multiple-empty-lines": ["off"],
-    // Disallow multiple empty lines
-    "no-tabs": ["off"],
-    // Disallow all tabs
-    "no-trailing-spaces": ["off"],
-    // Disallow trailing whitespace at the end of lines
-    "no-whitespace-before-property": ["off"],
-    // Disallow whitespace before properties
-    "nonblock-statement-body-position": ["warn"],
-    // Enforce the location of single-line statements
-    "object-curly-newline": ["off"],
-    // Enforce consistent line breaks after opening and before closing braces
-    "object-curly-spacing": ["off"],
-    // Enforce consistent spacing inside braces
-    "object-property-newline": ["off"],
-    // Enforce placing object properties on separate lines
-    "operator-linebreak": ["off"],
-    // Enforce consistent linebreak style for operators
-    "padded-blocks": ["off"],
-    // Require or disallow padding within blocks
-    "padding-line-between-statements": ["off"],
-    // Require or disallow padding lines between statements
-    quotes: ["warn", "double"],
-    // Enforce the consistent use of either backticks, double, or single quotes
-    "rest-spread-spacing": ["off"],
-    // Enforce spacing between rest and spread operators and their expressions
-    semi: ["off"],
-    // Require or disallow semicolons instead of ASI
-    "semi-spacing": ["off"],
-    // Enforce consistent spacing before and after semicolons
-    "semi-style": ["off"],
-    // Enforce location of semicolons
-    "space-before-blocks": ["warn"],
-    // Enforce consistent spacing before blocks
-    "space-before-function-paren": [
-      "off",
-      {
-        anonymous: "always",
-        named: "always",
-        asyncArrow: "always"
-      }
-    ],
-    // Enforce consistent spacing before `function` definition opening parenthesis
-    "space-in-parens": ["off"],
-    // Enforce consistent spacing inside parentheses
-    "space-infix-ops": ["off"],
-    // Require spacing around infix operators
-    "space-unary-ops": ["off"],
-    // Enforce consistent spacing before or after unary operators
-    "switch-colon-spacing": ["off"],
-    // Enforce spacing around colons of switch statements
-    "template-curly-spacing": ["off"],
-    // Require or disallow spacing around embedded expressions of template strings
-    "template-tag-spacing": ["off"],
-    // Require or disallow spacing between template tags and their literals
-    "unicode-bom": ["off"],
-    // Require or disallow Unicode byte order mark (BOM)
-    "wrap-iife": ["warn"],
-    // Require parentheses around immediate `function` invocations
-    "wrap-regex": ["warn"],
-    // Require parenthesis around regex literals
-    "yield-star-spacing": ["off"]
-    // Require or disallow spacing around the `*` in `yield*` expressions
-  }
-};
-var styles_default = config3;
-
 // src/rules/suggestions.ts
-var config4 = {
+var config3 = {
   rules: {
     "accessor-pairs": "off",
     // Enforce getter and setter pairs in objects and classes
@@ -646,11 +483,11 @@ var config4 = {
     // Require or disallow "Yoda" conditions
   }
 };
-var suggestions_default = config4;
+var suggestions_default = config3;
 
 // src/legacy/base.ts
 var plugins = ["compat", "jsdoc", "n", "simple-import-sort", "unicorn"];
-var extends_ = [`plugin:compat/recommended`, `plugin:unicorn/recommended`];
+var extends_ = ["plugin:compat/recommended", "plugin:unicorn/recommended", "plugin:tailwindcss/recommended"];
 var rules = {
   ...logic_default.rules,
   ...suggestions_default.rules,
@@ -659,24 +496,24 @@ var rules = {
 };
 if (isESModule) {
   plugins.push("import");
-  extends_.push(`plugin:import/recommended`);
-  isUsingPrettier && extends_.push(`plugin:import/react`);
-  isUsingTypescript && extends_.push(`plugin:import/typescript`);
+  extends_.push("plugin:import/recommended");
+  isUsingPrettier && extends_.push("plugin:import/react");
+  isUsingTypescript && extends_.push("plugin:import/typescript");
 }
 if (isESModule) {
-  extends_.push(`plugin:n/recommended-module`);
+  extends_.push("plugin:n/recommended-module");
 } else {
-  extends_.push(`plugin:n/recommended-script`);
+  extends_.push("plugin:n/recommended-script");
 }
 if (isUsingPrettier) {
-  extends_.push(`plugin:prettier/recommended`);
+  extends_.push("plugin:prettier/recommended");
 } else {
   Object.assign(rules, styles_default.rules);
 }
 if (isUsingTypescript) {
-  extends_.push(`plugin:jsdoc/recommended-typescript`);
+  extends_.push("plugin:jsdoc/recommended-typescript");
 } else {
-  extends_.push(`plugin:jsdoc/recommended`);
+  extends_.push("plugin:jsdoc/recommended");
 }
 var base_default = {
   env: {
@@ -726,19 +563,19 @@ var json_default = {
 };
 
 // src/legacy/react.ts
-import { resolve } from "node:path";
+import nodePath from "node:path";
 import { readJSONSync } from "fs-extra";
 import semver from "semver";
 var isReactVersionGreaterThan17 = function checkReactVersion() {
   try {
-    const reactPackage = readJSONSync(resolve(process.cwd(), "node_modules/react/package.json"));
+    const reactPackage = readJSONSync(nodePath.resolve(process.cwd(), "node_modules/react/package.json"));
     return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
   } catch {
     return false;
   }
 }();
 var files = ["**/*.{tsx,jsx}"];
-var config5 = {
+var config4 = {
   files,
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -765,24 +602,24 @@ var config5 = {
       {
         allowConstantExport: true,
         allowExportNames: [
-          `action`,
+          "action",
           // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
-          `loader`,
+          "loader",
           // The route loader is called before the route renders and provides data for the element through useLoaderData.
-          `caseSensitive`,
+          "caseSensitive",
           // Instructs the route to match case or not.
-          `index`,
-          `handle`,
-          `errorElement`,
-          `ErrorBoundary`,
-          `shouldRevalidate`
+          "index",
+          "handle",
+          "errorElement",
+          "ErrorBoundary",
+          "shouldRevalidate"
           // Using this API risks your UI getting out of sync with your data, use with caution!
         ]
       }
     ]
   }
 };
-var react_default = config5;
+var react_default = config4;
 
 // src/legacy/typescript.ts
 var files2 = ["**/*.ts", "**/*.tsx"];
@@ -794,11 +631,11 @@ var typescript_default = {
 };
 
 // src/legacy.ts
-var config6 = {
+var config5 = {
   ...base_default,
   overrides: [json_default, jest_default, react_default, typescript_default]
 };
-var legacy_default = config6;
+var legacy_default = config5;
 export {
   legacy_default as default
 };

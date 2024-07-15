@@ -13,7 +13,7 @@ const isReactVersionGreaterThan17 = (function checkReactVersion() {
     // Can't find react in local, just ignore the error and return a false.
     return false;
   }
-})();
+}());
 
 const files = ["**/*.{tsx,jsx}"];
 
@@ -34,9 +34,9 @@ const config = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    isReactVersionGreaterThan17 ? "plugin:react/jsx-runtime" : "",
+    isReactVersionGreaterThan17 ? "plugin:react/jsx-runtime" : ""
   ].filter(Boolean),
-  settings: { react: { version: "detect" } },
+  settings: { react: { version: "detect", }, },
   rules: {
     // Force only export components from a TSX or JSX file.
     "react-refresh/only-export-components": [
@@ -44,16 +44,16 @@ const config = {
       {
         allowConstantExport: true,
         allowExportNames: [
-          `action`, // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
-          `loader`, // The route loader is called before the route renders and provides data for the element through useLoaderData.
-          `caseSensitive`, // Instructs the route to match case or not.
-          `index`,
-          `handle`,
-          `errorElement`,
-          `ErrorBoundary`,
-          `shouldRevalidate`, // Using this API risks your UI getting out of sync with your data, use with caution!
+          "action", // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
+          "loader", // The route loader is called before the route renders and provides data for the element through useLoaderData.
+          "caseSensitive", // Instructs the route to match case or not.
+          "index",
+          "handle",
+          "errorElement",
+          "ErrorBoundary",
+          "shouldRevalidate" // Using this API risks your UI getting out of sync with your data, use with caution!
         ],
-      },
+      }
     ],
   },
 } as Linter.ConfigOverride;

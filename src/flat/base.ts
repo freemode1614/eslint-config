@@ -10,7 +10,8 @@ import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
 
 import customRules from "@/rules/custom";
-import { isESModule, isUsingTypescript } from "@/utils";
+import styleRulesOverride from "@/rules/styles";
+import { isESModule, isUsingPrettier, isUsingTypescript } from "@/utils";
 
 const settings: Linter.Config["settings"] = {
   // "import/parsers": {
@@ -64,9 +65,13 @@ export default [
   ...jsonc.configs["flat/recommended-with-json5"],
   ...jsonc.configs["flat/prettier"],
   compat.configs["flat/recommended"],
-  isESModule ? n.configs["flat/recommended-module"] : n.configs["flat/recommended-script"],
-  isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
-  prettier,
+  isESModule
+    ? n.configs["flat/recommended-module"]
+    : n.configs["flat/recommended-script"],
+  isUsingTypescript
+    ? jsdoc.configs["flat/recommended-typescript"]
+    : jsdoc.configs["flat/recommended"],
+  isUsingPrettier ? prettier : styleRulesOverride,
   ...tailwind.configs["flat/recommended"],
   {
     rules: Object.assign(customRules),

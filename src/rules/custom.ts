@@ -33,17 +33,17 @@ export default {
         dev: false,
         prod: false,
       },
-    },
+    }
   ],
   "unicorn/filename-case": [
     "warn",
     {
-      case: {
+      cases: {
         camelCase: true,
         pascalCase: true,
       },
       ignore: [/API/, /JSON/, /^App/, /^@/, /^$/],
-    },
+    }
   ],
   "unicorn/prefer-set-has": "warn",
   "unicorn/prefer-string-replace-all": "off",

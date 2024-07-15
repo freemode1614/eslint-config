@@ -2,8 +2,10 @@ import {
   custom_default,
   isESModule,
   isUsingJest,
-  isUsingTypescript
-} from "./chunk-K45L7TJT.js";
+  isUsingPrettier,
+  isUsingTypescript,
+  styles_default
+} from "./chunk-UNFJOJDC.js";
 
 // src/flat/base.ts
 import compat from "eslint-plugin-compat";
@@ -12,6 +14,7 @@ import jsonc from "eslint-plugin-jsonc";
 import n from "eslint-plugin-n";
 import prettier from "eslint-plugin-prettier/recommended";
 import importSort from "eslint-plugin-simple-import-sort";
+import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
 var settings = {
   // "import/parsers": {
@@ -49,15 +52,6 @@ var settings = {
       yield: "yield"
     }
   }
-  // node: {
-  //   typescriptExtensionMap: [
-  //     ["", ".js"],
-  //     [".ts", ".js"],
-  //     [".cts", ".cjs"],
-  //     [".mts", ".mjs"],
-  //     [".tsx", ".jsx"],
-  //   ],
-  // },
 };
 var base_default = [
   {
@@ -75,7 +69,8 @@ var base_default = [
   compat.configs["flat/recommended"],
   isESModule ? n.configs["flat/recommended-module"] : n.configs["flat/recommended-script"],
   isUsingTypescript ? jsdoc.configs["flat/recommended-typescript"] : jsdoc.configs["flat/recommended"],
-  prettier,
+  isUsingPrettier ? prettier : styles_default,
+  ...tailwind.configs["flat/recommended"],
   {
     rules: Object.assign(custom_default)
   },
@@ -113,7 +108,7 @@ var json_default = [
 ];
 
 // src/flat/react.ts
-import { resolve } from "node:path";
+import nodePath from "node:path";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -125,7 +120,7 @@ import { parser as tsParser } from "typescript-eslint";
 var { readJSONSync } = fsExtra;
 var isReactVersionGreaterThan17 = function checkReactVersion() {
   try {
-    const reactPackage = readJSONSync(resolve(process.cwd(), "node_modules/react/package.json"));
+    const reactPackage = readJSONSync(nodePath.resolve(process.cwd(), "node_modules/react/package.json"));
     return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
   } catch {
     return false;
@@ -170,17 +165,17 @@ var configs2 = [
             checkJS: false,
             allowConstantExport: true,
             allowExportNames: [
-              `action`,
+              "action",
               // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
-              `loader`,
+              "loader",
               // The route loader is called before the route renders and provides data for the element through useLoaderData.
-              `caseSensitive`,
+              "caseSensitive",
               // Instructs the route to match case or not.
-              `index`,
-              `handle`,
-              `errorElement`,
-              `ErrorBoundary`,
-              `shouldRevalidate`
+              "index",
+              "handle",
+              "errorElement",
+              "ErrorBoundary",
+              "shouldRevalidate"
               // Using this API risks your UI getting out of sync with your data, use with caution!
             ]
           }

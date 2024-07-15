@@ -8,7 +8,7 @@ import suggestions from "@/rules/suggestions";
 import { isESModule, isUsingPrettier, isUsingReact, isUsingTypescript } from "@/utils";
 
 const plugins = ["compat", "jsdoc", "n", "simple-import-sort", "unicorn"];
-const extends_ = [`plugin:compat/recommended`, `plugin:unicorn/recommended`, `plugin:tailwindcss/recommended`];
+const extends_ = ["plugin:compat/recommended", "plugin:unicorn/recommended", "plugin:tailwindcss/recommended"];
 
 const rules: Partial<Linter.RulesRecord> = {
   ...logic.rules!,
@@ -22,27 +22,27 @@ if (isESModule) {
   // and prevent issues with misspelling of file paths and import names.
   // All the goodness that the ES2015+ static module syntax intends to provide, marked up in your editor.
   plugins.push("import");
-  extends_.push(`plugin:import/recommended`);
-  isUsingPrettier && extends_.push(`plugin:import/react`);
-  isUsingTypescript && extends_.push(`plugin:import/typescript`);
+  extends_.push("plugin:import/recommended");
+  isUsingPrettier && extends_.push("plugin:import/react");
+  isUsingTypescript && extends_.push("plugin:import/typescript");
 }
 
 if (isESModule) {
-  extends_.push(`plugin:n/recommended-module`);
+  extends_.push("plugin:n/recommended-module");
 } else {
-  extends_.push(`plugin:n/recommended-script`);
+  extends_.push("plugin:n/recommended-script");
 }
 
 if (isUsingPrettier) {
-  extends_.push(`plugin:prettier/recommended`);
+  extends_.push("plugin:prettier/recommended");
 } else {
   Object.assign(rules, styles.rules!);
 }
 
 if (isUsingTypescript) {
-  extends_.push(`plugin:jsdoc/recommended-typescript`);
+  extends_.push("plugin:jsdoc/recommended-typescript");
 } else {
-  extends_.push(`plugin:jsdoc/recommended`);
+  extends_.push("plugin:jsdoc/recommended");
 }
 
 export default {
@@ -71,7 +71,7 @@ export default {
     "**/node_modules/**",
     "**/build/**",
     "**/dist/**",
-    "**/temp/**",
+    "**/temp/**"
   ],
   rules,
   plugins,

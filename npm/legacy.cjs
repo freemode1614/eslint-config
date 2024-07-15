@@ -35,10 +35,10 @@ __export(legacy_exports, {
 module.exports = __toCommonJS(legacy_exports);
 
 // src/utils.ts
-var import_node_path = require("path");
+var import_node_path = __toESM(require("path"), 1);
 var import_fs_extra = __toESM(require("fs-extra"), 1);
 var { readJSONSync } = import_fs_extra.default;
-var package_ = readJSONSync((0, import_node_path.resolve)(process.cwd(), "package.json"), {
+var package_ = readJSONSync(import_node_path.default.resolve(process.cwd(), "package.json"), {
   throws: false
 });
 if (!package_) {
@@ -91,32 +91,24 @@ var custom_default = {
     "warn",
     {
       replacements: {
-        useRef: {
-          useReference: false
-        },
-        ref: {
-          reference: false
-        },
-        props: {
-          properties: false
-        }
+        useRef: false,
+        ref: false,
+        props: false,
+        dir: false,
+        msg: false,
+        dev: false,
+        prod: false
       }
     }
   ],
   "unicorn/filename-case": [
     "warn",
     {
-      case: "camelCase",
-      ignore: [
-        /API/,
-        /JSON/,
-        // Entry file name for most of the scaffold
-        /App/,
-        // For dynamic router name prefix
-        /^@/,
-        // For optional router name prefix
-        /^$/
-      ]
+      cases: {
+        camelCase: true,
+        pascalCase: true
+      },
+      ignore: [/API/, /JSON/, /^App/, /^@/, /^$/]
     }
   ],
   "unicorn/prefer-set-has": "warn",
@@ -130,7 +122,8 @@ var custom_default = {
   "unicorn/no-for-loop": "warn",
   // Disable no-null rule, since `null` is a valid ReactNode for function component.
   "unicorn/no-null": isUsingReact ? "off" : "warn",
-  "no-case-declarations": "off"
+  "no-case-declarations": "off",
+  "@typescript-eslint/consistent-type-definitions": "off"
 };
 
 // src/rules/deprecated.ts
@@ -776,7 +769,7 @@ var suggestions_default = config4;
 
 // src/legacy/base.ts
 var plugins = ["compat", "jsdoc", "n", "simple-import-sort", "unicorn"];
-var extends_ = [`plugin:compat/recommended`, `plugin:unicorn/recommended`];
+var extends_ = ["plugin:compat/recommended", "plugin:unicorn/recommended", "plugin:tailwindcss/recommended"];
 var rules = {
   ...logic_default.rules,
   ...suggestions_default.rules,
@@ -785,24 +778,24 @@ var rules = {
 };
 if (isESModule) {
   plugins.push("import");
-  extends_.push(`plugin:import/recommended`);
-  isUsingPrettier && extends_.push(`plugin:import/react`);
-  isUsingTypescript && extends_.push(`plugin:import/typescript`);
+  extends_.push("plugin:import/recommended");
+  isUsingPrettier && extends_.push("plugin:import/react");
+  isUsingTypescript && extends_.push("plugin:import/typescript");
 }
 if (isESModule) {
-  extends_.push(`plugin:n/recommended-module`);
+  extends_.push("plugin:n/recommended-module");
 } else {
-  extends_.push(`plugin:n/recommended-script`);
+  extends_.push("plugin:n/recommended-script");
 }
 if (isUsingPrettier) {
-  extends_.push(`plugin:prettier/recommended`);
+  extends_.push("plugin:prettier/recommended");
 } else {
   Object.assign(rules, styles_default.rules);
 }
 if (isUsingTypescript) {
-  extends_.push(`plugin:jsdoc/recommended-typescript`);
+  extends_.push("plugin:jsdoc/recommended-typescript");
 } else {
-  extends_.push(`plugin:jsdoc/recommended`);
+  extends_.push("plugin:jsdoc/recommended");
 }
 var base_default = {
   env: {
@@ -852,12 +845,12 @@ var json_default = {
 };
 
 // src/legacy/react.ts
-var import_node_path2 = require("path");
+var import_node_path2 = __toESM(require("path"), 1);
 var import_fs_extra2 = require("fs-extra");
 var import_semver = __toESM(require("semver"), 1);
 var isReactVersionGreaterThan17 = function checkReactVersion() {
   try {
-    const reactPackage = (0, import_fs_extra2.readJSONSync)((0, import_node_path2.resolve)(process.cwd(), "node_modules/react/package.json"));
+    const reactPackage = (0, import_fs_extra2.readJSONSync)(import_node_path2.default.resolve(process.cwd(), "node_modules/react/package.json"));
     return !!(reactPackage && import_semver.default.satisfies(reactPackage.version, ">=17"));
   } catch {
     return false;
@@ -891,17 +884,17 @@ var config5 = {
       {
         allowConstantExport: true,
         allowExportNames: [
-          `action`,
+          "action",
           // The route action is called when a submission is sent to the route from a Form, fetcher, or submission.
-          `loader`,
+          "loader",
           // The route loader is called before the route renders and provides data for the element through useLoaderData.
-          `caseSensitive`,
+          "caseSensitive",
           // Instructs the route to match case or not.
-          `index`,
-          `handle`,
-          `errorElement`,
-          `ErrorBoundary`,
-          `shouldRevalidate`
+          "index",
+          "handle",
+          "errorElement",
+          "ErrorBoundary",
+          "shouldRevalidate"
           // Using this API risks your UI getting out of sync with your data, use with caution!
         ]
       }
