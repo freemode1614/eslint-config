@@ -18,44 +18,7 @@ export default {
   "n/no-missing-import": "off",
   "n/no-missing-require": "off",
 
-  // unicorn rules customization
-  "unicorn/prefer-module": isESModule ? "error" : "off",
-  "unicorn/switch-case-braces": "off",
-  "unicorn/prevent-abbreviations": [
-    "warn",
-    {
-      replacements: {
-        useRef: false,
-        ref: false,
-        props: false,
-        dir: false,
-        msg: false,
-        dev: false,
-        prod: false,
-      },
-    }
-  ],
-  "unicorn/filename-case": [
-    "warn",
-    {
-      cases: {
-        camelCase: true,
-        pascalCase: true,
-      },
-      ignore: [/API/, /JSON/, /^App/, /^@/, /^$/],
-    }
-  ],
-  "unicorn/prefer-set-has": "warn",
-  "unicorn/prefer-string-replace-all": "off",
-  "unicorn/no-array-callback-reference": "off",
-  "unicorn/no-array-push-push": "warn",
-  "unicorn/prefer-export-from": "warn",
-  "unicorn/no-array-for-each": "off",
-  "unicorn/import-style": ["warn"],
-  "unicorn/prefer-spread": "warn",
-  "unicorn/no-for-loop": "warn",
-  // Disable no-null rule, since `null` is a valid ReactNode for function component.
-  "unicorn/no-null": isUsingReact ? "off" : "warn",
+
   "no-case-declarations": "off",
 
   "@typescript-eslint/consistent-type-definitions": "off",
