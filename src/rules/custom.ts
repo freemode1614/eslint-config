@@ -1,6 +1,6 @@
 import { Linter } from "eslint";
 
-import { isESModule, isUsingReact, isUsingTypescript } from "@/utils";
+import { isUsingTypescript } from "@/utils";
 
 export default {
   "simple-import-sort/imports": "error",

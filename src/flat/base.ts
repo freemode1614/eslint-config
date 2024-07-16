@@ -87,6 +87,8 @@ export default [
             args: false,
             req: false,
             resp: false,
+            num: false,
+            doc: false,
           },
         }
       ],
