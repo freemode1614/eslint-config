@@ -59,4 +59,5 @@ export default {
   "no-case-declarations": "off",
 
   "@typescript-eslint/consistent-type-definitions": "off",
+  "@typescript-eslint/no-empty-interface": "warn",
 } as Partial<Linter.RulesRecord>;

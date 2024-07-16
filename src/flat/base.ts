@@ -26,29 +26,29 @@ const settings: Linter.Config["settings"] = {
   //     ],
   //   },
   // },
-  jsdoc: {
-    tagNamePreference: {
-      arg: "arg",
-      argument: "argument",
-      const: "const",
-      constructor: "constructor",
-      defaultvalue: "defaultvalue",
-      desc: "desc",
-      emits: "emits",
-      exception: "exception",
-      extends: "extends",
-      fileoverview: "fileoverview",
-      func: "func",
-      host: "host",
-      method: "method",
-      overview: "overview",
-      prop: "prop",
-      return: "return",
-      var: "var",
-      virtual: "virtual",
-      yield: "yield",
-    },
-  },
+  // jsdoc: {
+  //   tagNamePreference: {
+  //     arg: "arg",
+  //     argument: "argument",
+  //     const: "const",
+  //     constructor: "constructor",
+  //     defaultvalue: "defaultvalue",
+  //     desc: "desc",
+  //     emits: "emits",
+  //     exception: "exception",
+  //     extends: "extends",
+  //     fileoverview: "fileoverview",
+  //     func: "func",
+  //     host: "host",
+  //     method: "method",
+  //     overview: "overview",
+  //     prop: "prop",
+  //     return: "return",
+  //     var: "var",
+  //     virtual: "virtual",
+  //     yield: "yield",
+  //   },
+  // },
 };
 
 export default [
@@ -84,7 +84,7 @@ export default [
       "**/node_modules/**",
       "**/build/**",
       "**/dist/**",
-      "**/temp/**",
+      "**/temp/**"
     ],
-  },
+  }
 ] as Linter.FlatConfig[];

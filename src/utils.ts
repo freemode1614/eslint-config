@@ -23,20 +23,3 @@ export const isUsingPrettier = localProjectDeps.includes("prettier");
 export const isUsingTypescript = localProjectDeps.includes("typescript");
 export const isUsingJest = localProjectDeps.includes("jest");
 export const isESModule = package_.type === "module";
-
-console.log(
-  "isUsingReact ->",
-  isUsingReact,
-  "\n",
-  "isUsingPrettier ->",
-  isUsingPrettier,
-  "\n",
-  "isUsingTypescript ->",
-  isUsingTypescript,
-  "\n",
-  "isUsingJest ->",
-  isUsingJest,
-  "\n",
-  "isESModule ->",
-  isESModule
-);
