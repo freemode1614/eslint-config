@@ -55,10 +55,12 @@ const settings: Linter.Config["settings"] = {
 export default [
   {
     files: ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"],
+    settings,
+  },
+  {
     plugins: {
       "simple-import-sort": importSort,
     },
-    settings,
   },
   {
     languageOptions: {
@@ -83,8 +85,6 @@ export default [
             dev: false,
             prod: false,
             args: false,
-            i: false,
-            j: false,
             req: false,
             resp: false,
           },
