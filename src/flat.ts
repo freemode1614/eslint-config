@@ -3,7 +3,17 @@ import jest from "@/flat/jest";
 import json from "@/flat/json";
 import react from "@/flat/react";
 import typescript from "@/flat/typescript";
+import customRules from "@/rules/custom";
 
-const config = [...base, ...jest, ...json, ...react, ...typescript];
+const config = [
+  ...base,
+  ...jest,
+  ...json,
+  ...react,
+  ...typescript,
+  {
+    rules: Object.assign(customRules),
+  }
+];
 
 export default config;

@@ -1,6 +1,6 @@
 import { Linter } from "eslint";
 
-import { isUsingTypescript } from "@/utils";
+import { isESModule, isUsingReact, isUsingTypescript } from "@/utils";
 
 export default {
   "simple-import-sort/imports": "error",
@@ -18,9 +18,53 @@ export default {
   "n/no-missing-import": "off",
   "n/no-missing-require": "off",
 
-
   "no-case-declarations": "off",
 
   "@typescript-eslint/consistent-type-definitions": "off",
   "@typescript-eslint/no-empty-interface": "warn",
+
+
+  // unicorn rules customization
+  "unicorn/prefer-module": isESModule ? "error" : "off",
+  "unicorn/switch-case-braces": "off",
+  "unicorn/prevent-abbreviations": [
+    "warn",
+    {
+      replacements: {
+        useRef: false,
+        ref: false,
+        props: false,
+        dir: false,
+        msg: false,
+        dev: false,
+        prod: false,
+        args: false,
+        req: false,
+        resp: false,
+        num: false,
+        doc: false,
+      },
+    }
+  ],
+  "unicorn/filename-case": [
+    "warn",
+    {
+      cases: {
+        camelCase: true,
+        pascalCase: true,
+      },
+      ignore: [/API/, /JSON/, /^App/, /URL/, /TTS/, /STT/, /^@/, /^$/],
+    }
+  ],
+  "unicorn/prefer-set-has": "warn",
+  "unicorn/prefer-string-replace-all": "off",
+  "unicorn/no-array-callback-reference": "off",
+  "unicorn/no-array-push-push": "warn",
+  "unicorn/prefer-export-from": "warn",
+  "unicorn/no-array-for-each": "off",
+  "unicorn/import-style": ["warn"],
+  "unicorn/prefer-spread": "warn",
+  "unicorn/no-for-loop": "warn",
+  // Disable no-null rule, since `null` is a valid ReactNode for function component.
+  "unicorn/no-null": isUsingReact ? "off" : "warn",
 } as Partial<Linter.RulesRecord>;

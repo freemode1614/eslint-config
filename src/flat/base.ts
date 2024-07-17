@@ -10,9 +10,8 @@ import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 
-import customRules from "@/rules/custom";
 import styleRulesOverride from "@/rules/styles";
-import { isESModule, isUsingPrettier, isUsingReact, isUsingTypescript } from "@/utils";
+import { isESModule, isUsingPrettier, isUsingTypescript } from "@/utils";
 
 const settings: Linter.Config["settings"] = {
   // "import/parsers": {
@@ -69,51 +68,6 @@ export default [
     plugins: {
       unicorn,
     },
-    rules: {
-      // unicorn rules customization
-      "unicorn/prefer-module": isESModule ? "error" : "off",
-      "unicorn/switch-case-braces": "off",
-      "unicorn/prevent-abbreviations": [
-        "warn",
-        {
-          replacements: {
-            useRef: false,
-            ref: false,
-            props: false,
-            dir: false,
-            msg: false,
-            dev: false,
-            prod: false,
-            args: false,
-            req: false,
-            resp: false,
-            num: false,
-            doc: false,
-          },
-        }
-      ],
-      "unicorn/filename-case": [
-        "warn",
-        {
-          cases: {
-            camelCase: true,
-            pascalCase: true,
-          },
-          ignore: [/API/, /JSON/, /^App/, /URL/, /TTS/, /STT/, /^@/, /^$/],
-        }
-      ],
-      "unicorn/prefer-set-has": "warn",
-      "unicorn/prefer-string-replace-all": "off",
-      "unicorn/no-array-callback-reference": "off",
-      "unicorn/no-array-push-push": "warn",
-      "unicorn/prefer-export-from": "warn",
-      "unicorn/no-array-for-each": "off",
-      "unicorn/import-style": ["warn"],
-      "unicorn/prefer-spread": "warn",
-      "unicorn/no-for-loop": "warn",
-      // Disable no-null rule, since `null` is a valid ReactNode for function component.
-      "unicorn/no-null": isUsingReact ? "off" : "warn",
-    },
   },
   ...jsonc.configs["flat/recommended-with-jsonc"],
   ...jsonc.configs["flat/recommended-with-json"],
@@ -128,9 +82,6 @@ export default [
     : jsdoc.configs["flat/recommended"],
   isUsingPrettier ? prettier : styleRulesOverride,
   ...tailwind.configs["flat/recommended"],
-  {
-    rules: Object.assign(customRules),
-  },
   {
     ignores: [
       "**/*.{css,less,stylus,pcss}",
