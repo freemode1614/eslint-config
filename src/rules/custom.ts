@@ -23,7 +23,6 @@ export default {
   "@typescript-eslint/consistent-type-definitions": "off",
   "@typescript-eslint/no-empty-interface": "warn",
 
-
   // unicorn rules customization
   "unicorn/prefer-module": isESModule ? "error" : "off",
   "unicorn/switch-case-braces": "off",

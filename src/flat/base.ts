@@ -1,5 +1,6 @@
 import type { Linter } from "eslint";
 import compat from "eslint-plugin-compat";
+// TODO: Add import plugin, when flat config is office support
 // import * as importPlugin from "eslint-plugin-import";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
@@ -22,7 +23,7 @@ const settings: Linter.Config["settings"] = {
   //     alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
   //     project: [
   //       "tsconfig.json", //
-  //       "packages/*/tsconfig.json",
+  //       "packages/*/tsconfig.json"
   //     ],
   //   },
   // },
