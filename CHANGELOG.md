@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.9
+
+### Patch Changes
+
+- chore: typescript-eslint custom rules is not working
+
 ## 0.2.8
 
 ### Patch Changes
