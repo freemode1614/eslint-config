@@ -1,6 +1,6 @@
 /* eslint-disable n/no-extraneous-import */
 
-import { TSESLint } from "@typescript-eslint/utils";
+import type { TSESLint } from "@typescript-eslint/utils";
 import { configs } from "typescript-eslint";
 
 export interface ConfigWithExtends extends TSESLint.FlatConfig.Config {

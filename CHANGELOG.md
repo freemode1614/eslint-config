@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.10
+
+### Patch Changes
+
+- chore:fix config error
+
 ## 0.2.9
 
 ### Patch Changes
