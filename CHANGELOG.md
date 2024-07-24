@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.11
+
+### Patch Changes
+
+- ae5433f: minor update
+
 ## 0.2.10
 
 ### Patch Changes
