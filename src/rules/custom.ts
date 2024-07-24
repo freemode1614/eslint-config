@@ -13,6 +13,7 @@ export default {
   "jsdoc/require-param": isUsingTypescript ? "off" : "warn",
   "jsdoc/require-param-description": isUsingTypescript ? "off" : "warn",
   "jsdoc/check-param-names": isUsingTypescript ? "off" : "warn",
+  "jsdoc/tag-lines": ["error", "always", { count: 0, startLines: 1, }],
 
   // TODO: Can't setup the right configuration for this, so ignore now.
   "n/no-missing-import": "off",
