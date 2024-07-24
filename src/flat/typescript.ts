@@ -39,13 +39,13 @@ export default config(
   ...configs.stylisticTypeChecked,
   {
     languageOptions: {
-      // parserOptions: {
-      //   project: true,
-      //   tsconfigRootDir: import.meta.dirname,
-      //   extraFileExtensions: [
-      //     ".json"
-      //   ],
-      // },
+      parserOptions: {
+        project: true,
+        // tsconfigRootDir: import.meta.dirname,
+        // extraFileExtensions: [
+        //   ".json"
+        // ],
+      },
     },
     rules: {
       "@typescript-eslint/consistent-type-definitions": "off",

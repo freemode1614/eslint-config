@@ -1,3 +1,5 @@
+import type { ESLintRules } from "eslint/rules";
+
 import base from "@/flat/base";
 import jest from "@/flat/jest";
 import json from "@/flat/json";
@@ -12,7 +14,7 @@ const config = [
   ...react,
   ...typescript,
   {
-    rules: Object.assign(customRules),
+    rules: Object.assign(customRules) as ESLintRules,
   }
 ];
 

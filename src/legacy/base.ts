@@ -11,9 +11,9 @@ const plugins = ["compat", "jsdoc", "n", "simple-import-sort", "unicorn"];
 const extends_ = ["plugin:compat/recommended", "plugin:unicorn/recommended", "plugin:tailwindcss/recommended"];
 
 const rules: Partial<Linter.RulesRecord> = {
-  ...logic.rules!,
-  ...suggestions.rules!,
-  ...deprecated.rules!,
+  ...logic.rules,
+  ...suggestions.rules,
+  ...deprecated.rules,
   ...customRules,
 };
 
@@ -36,7 +36,7 @@ if (isESModule) {
 if (isUsingPrettier) {
   extends_.push("plugin:prettier/recommended");
 } else {
-  Object.assign(rules, styles.rules!);
+  Object.assign(rules, styles.rules);
 }
 
 if (isUsingTypescript) {

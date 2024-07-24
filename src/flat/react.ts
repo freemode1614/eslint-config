@@ -15,7 +15,9 @@ const { readJSONSync, } = fsExtra;
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.
   try {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const reactPackage = readJSONSync(nodePath.resolve(process.cwd(), "node_modules/react/package.json"));
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
   } catch {
     // Can't find react in local, just ignore the error and return a false.
@@ -55,6 +57,7 @@ const configs: Linter.FlatConfig[] = [
   },
   {
     files: reactFiles,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     rules: Object.assign(
       {
         // reactRefresh.configs.recommended.rules,
@@ -76,9 +79,13 @@ const configs: Linter.FlatConfig[] = [
           }
         ],
       },
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       react.configs.recommended.rules,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       reactHooks.configs.recommended.rules,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       jsxA11y.configs.recommended.rules,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       isReactVersionGreaterThan17 ? react.configs["jsx-runtime"].rules : {}
     ),
   }
