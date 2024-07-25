@@ -9,10 +9,10 @@ import customRules from "@/rules/custom";
 
 const config = [
   ...base,
-  ...jest,
-  ...json,
-  ...react,
   ...typescript,
+  ...jest,
+  ...react,
+  ...json,
   {
     rules: Object.assign(customRules) as ESLintRules,
   }

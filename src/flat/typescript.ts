@@ -31,7 +31,6 @@ function config(
   });
 }
 
-
 export default config(
   // @ts-expect-error IGNORE ERROR
   ...configs.strict,
@@ -39,15 +38,18 @@ export default config(
   ...configs.recommended,
   {
     languageOptions: {
-      // parserOptions: {
-      //   project: true,
-      //   warnOnUnsupportedTypeScriptVersion: true,
-      //   tsconfigRootDir: import.meta.dirname,
-      //   extraFileExtensions: [
-      //     ".json"
-      //   ],
-      // },
+      parserOptions: {
+        project: true,
+        // warnOnUnsupportedTypeScriptVersion: true,
+        tsconfigRootDir: process.cwd(),
+        // extraFileExtensions: [
+        //   ".json"
+        // ],
+      },
     },
+    ignores: [
+      "*.json", "*.ts"
+    ],
     rules: {
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/no-empty-interface": "off",

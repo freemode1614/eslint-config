@@ -12,5 +12,5 @@ export default defineConfig([
     shims: true,
     sourcemap: false,
     clean: isProduction,
-  },
+  }
 ]);

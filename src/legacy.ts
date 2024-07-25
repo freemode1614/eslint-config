@@ -8,7 +8,7 @@ import typescript from "@/legacy/typescript";
 
 const config = {
   ...base,
-  overrides: [json, jest, react, typescript],
+  overrides: [typescript, json, jest, react],
 } as Linter.Config;
 
 export default config;
