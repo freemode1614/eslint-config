@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.13
+
+### Patch Changes
+
+- Fix Rule Issues
+
 ## 0.2.12
 
 ### Patch Changes
