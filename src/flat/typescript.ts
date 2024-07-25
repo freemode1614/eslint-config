@@ -34,18 +34,19 @@ function config(
 
 export default config(
   // @ts-expect-error IGNORE ERROR
-  ...configs.recommendedTypeChecked,
-  ...configs.strictTypeChecked,
-  ...configs.stylisticTypeChecked,
+  ...configs.strict,
+  ...configs.stylistic,
+  ...configs.recommended,
   {
     languageOptions: {
-      parserOptions: {
-        project: true,
-        // tsconfigRootDir: import.meta.dirname,
-        // extraFileExtensions: [
-        //   ".json"
-        // ],
-      },
+      // parserOptions: {
+      //   project: true,
+      //   warnOnUnsupportedTypeScriptVersion: true,
+      //   tsconfigRootDir: import.meta.dirname,
+      //   extraFileExtensions: [
+      //     ".json"
+      //   ],
+      // },
     },
     rules: {
       "@typescript-eslint/consistent-type-definitions": "off",
@@ -53,6 +54,12 @@ export default config(
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/restrict-template-expressions": "off",
       "@typescript-eslint/unbound-method": "off",
+      "@typescript-eslint/no-misused-promises": ["error", {
+        checksVoidReturn: {
+          arguments: false,
+          attributes: false,
+        },
+      }],
     },
   },
   {
