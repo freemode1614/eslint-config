@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.12
+
+### Patch Changes
+
+- chore: Replace TS rulesets
+
 ## 0.2.11
 
 ### Patch Changes
