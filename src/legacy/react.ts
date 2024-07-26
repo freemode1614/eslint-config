@@ -7,13 +7,15 @@ import semver from "semver";
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.
   try {
-    const reactPackage = readJSONSync(nodePath.resolve(process.cwd(), "node_modules/react/package.json"));
+    const reactPackage = readJSONSync(
+      nodePath.resolve(process.cwd(), "node_modules/react/package.json"),
+    );
     return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
   } catch {
     // Can't find react in local, just ignore the error and return a false.
     return false;
   }
-}());
+})();
 
 const files = ["**/*.{tsx,jsx}"];
 
@@ -34,9 +36,9 @@ const config = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    isReactVersionGreaterThan17 ? "plugin:react/jsx-runtime" : ""
+    isReactVersionGreaterThan17 ? "plugin:react/jsx-runtime" : "",
   ].filter(Boolean),
-  settings: { react: { version: "detect", }, },
+  settings: { react: { version: "detect" } },
   rules: {
     // Force only export components from a TSX or JSX file.
     "react-refresh/only-export-components": [
@@ -51,9 +53,9 @@ const config = {
           "handle",
           "errorElement",
           "ErrorBoundary",
-          "shouldRevalidate" // Using this API risks your UI getting out of sync with your data, use with caution!
+          "shouldRevalidate", // Using this API risks your UI getting out of sync with your data, use with caution!
         ],
-      }
+      },
     ],
   },
 } as Linter.ConfigOverride;

@@ -17,16 +17,16 @@ function config(
     }
 
     const extension = {
-      ...(config.files && { files: config.files, }),
-      ...(config.ignores && { ignores: config.ignores, }),
+      ...(config.files && { files: config.files }),
+      ...(config.ignores && { ignores: config.ignores }),
     };
 
     return [
-      ...extendsArray.map(config_ => ({
+      ...extendsArray.map((config_) => ({
         ...config_,
         ...extension,
       })),
-      config
+      config,
     ];
   });
 }
@@ -47,25 +47,26 @@ export default config(
         // ],
       },
     },
-    ignores: [
-      "*.json", "*.ts"
-    ],
+    ignores: ["*.json", "*.ts"],
     rules: {
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/no-empty-interface": "off",
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/restrict-template-expressions": "off",
       "@typescript-eslint/unbound-method": "off",
-      "@typescript-eslint/no-misused-promises": ["error", {
-        checksVoidReturn: {
-          arguments: false,
-          attributes: false,
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        {
+          checksVoidReturn: {
+            arguments: false,
+            attributes: false,
+          },
         },
-      }],
+      ],
     },
   },
   {
     files: ["**/*.js"],
     ...configs.disableTypeChecked,
-  }
-)
+  },
+);

@@ -15,7 +15,7 @@ const config = [
   ...json,
   {
     rules: Object.assign(customRules) as ESLintRules,
-  }
+  },
 ];
 
 export default config;

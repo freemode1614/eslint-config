@@ -7,7 +7,7 @@ export default {
   extends: [
     "plugin:@typescript-eslint/strict",
     "plugin:@typescript-eslint/stylistic",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
   ],
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
@@ -17,11 +17,14 @@ export default {
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/unbound-method": "off",
-    "@typescript-eslint/no-misused-promises": ["error", {
-      checksVoidReturn: {
-        arguments: false,
-        attributes: false,
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: {
+          arguments: false,
+          attributes: false,
+        },
       },
-    }],
+    ],
   },
 } as Linter.ConfigOverride;

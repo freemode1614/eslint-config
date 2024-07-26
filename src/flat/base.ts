@@ -90,7 +90,7 @@ export default [
       "**/node_modules/**",
       "**/build/**",
       "**/dist/**",
-      "**/temp/**"
+      "**/temp/**",
     ],
-  }
+  },
 ] as Linter.FlatConfig[];

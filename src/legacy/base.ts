@@ -4,10 +4,19 @@ import customRules from "@/rules/custom";
 import deprecated from "@/rules/deprecated";
 import logic from "@/rules/logic";
 import suggestions from "@/rules/suggestions";
-import { isESModule, isUsingPrettier, isUsingReact, isUsingTypescript } from "@/utils";
+import {
+  isESModule,
+  isUsingPrettier,
+  isUsingReact,
+  isUsingTypescript,
+} from "@/utils";
 
 const plugins = ["compat", "jsdoc", "n", "simple-import-sort", "unicorn"];
-const extends_ = ["plugin:compat/recommended", "plugin:unicorn/recommended", "plugin:tailwindcss/recommended"];
+const extends_ = [
+  "plugin:compat/recommended",
+  "plugin:unicorn/recommended",
+  "plugin:tailwindcss/recommended",
+];
 
 const rules: Partial<Linter.RulesRecord> = {
   ...logic.rules,
@@ -68,7 +77,7 @@ export default {
     "**/node_modules/**",
     "**/build/**",
     "**/dist/**",
-    "**/temp/**"
+    "**/temp/**",
   ],
   rules,
   plugins,
