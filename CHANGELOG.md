@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.14
+
+### Patch Changes
+
+- chore: remove JSON plugin
+
 ## 0.2.13
 
 ### Patch Changes
