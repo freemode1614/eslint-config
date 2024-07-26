@@ -74,20 +74,14 @@ export default [
   ...jsonc.configs["flat/recommended-with-json"],
   ...jsonc.configs["flat/recommended-with-json5"],
   ...jsonc.configs["flat/prettier"],
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   compat.configs["flat/recommended"],
   isESModule
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     ? n.configs["flat/recommended-module"]
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     : n.configs["flat/recommended-script"],
   isUsingTypescript
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     ? jsdoc.configs["flat/recommended-typescript"]
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     : jsdoc.configs["flat/recommended"],
   isUsingPrettier ? prettier : styleRulesOverride,
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   ...tailwind.configs["flat/recommended"],
   {
     ignores: [
