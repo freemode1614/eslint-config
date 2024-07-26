@@ -49,6 +49,10 @@ const settings: Linter.Config["settings"] = {
   //     yield: "yield",
   //   },
   // },
+  // eslint-plugin-compat
+  browserslistOpts: {
+    env: "modern",
+  },
 };
 
 export default [
