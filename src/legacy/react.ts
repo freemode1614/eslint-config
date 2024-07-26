@@ -7,9 +7,7 @@ import semver from "semver";
 const isReactVersionGreaterThan17 = (function checkReactVersion() {
   // Add jsx-runtime for ReactV17 or higher version.
   try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const reactPackage = readJSONSync(nodePath.resolve(process.cwd(), "node_modules/react/package.json"));
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     return !!(reactPackage && semver.satisfies(reactPackage.version, ">=17"));
   } catch {
     // Can't find react in local, just ignore the error and return a false.

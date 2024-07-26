@@ -11,8 +11,7 @@ import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 
-import styleRulesOverride from "@/rules/styles";
-import { isESModule, isUsingPrettier, isUsingTypescript } from "@/utils";
+import { isESModule, isUsingTypescript } from "@/utils";
 
 const settings: Linter.Config["settings"] = {
   // "import/parsers": {
@@ -81,7 +80,7 @@ export default [
   isUsingTypescript
     ? jsdoc.configs["flat/recommended-typescript"]
     : jsdoc.configs["flat/recommended"],
-  isUsingPrettier ? prettier : styleRulesOverride,
+  prettier,
   ...tailwind.configs["flat/recommended"],
   {
     ignores: [

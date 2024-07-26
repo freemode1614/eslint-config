@@ -3,7 +3,6 @@ import { Linter } from "eslint";
 import customRules from "@/rules/custom";
 import deprecated from "@/rules/deprecated";
 import logic from "@/rules/logic";
-import styles from "@/rules/styles";
 import suggestions from "@/rules/suggestions";
 import { isESModule, isUsingPrettier, isUsingReact, isUsingTypescript } from "@/utils";
 
@@ -35,8 +34,6 @@ if (isESModule) {
 
 if (isUsingPrettier) {
   extends_.push("plugin:prettier/recommended");
-} else {
-  Object.assign(rules, styles.rules);
 }
 
 if (isUsingTypescript) {
