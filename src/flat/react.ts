@@ -58,8 +58,11 @@ const configs: Linter.FlatConfig[] = [
   {
     files: reactFiles,
     rules: Object.assign(
+      react.configs.recommended.rules,
+      reactHooks.configs.recommended.rules,
+      jsxA11y.configs.recommended.rules,
+      isReactVersionGreaterThan17 ? react.configs["jsx-runtime"].rules : {},
       {
-        // reactRefresh.configs.recommended.rules,
         "react-refresh/only-export-components": [
           "error",
           {
@@ -78,10 +81,6 @@ const configs: Linter.FlatConfig[] = [
           },
         ],
       },
-      react.configs.recommended.rules,
-      reactHooks.configs.recommended.rules,
-      jsxA11y.configs.recommended.rules,
-      isReactVersionGreaterThan17 ? react.configs["jsx-runtime"].rules : {},
     ),
   },
 ];

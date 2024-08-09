@@ -1,5 +1,6 @@
 import { Linter } from "eslint";
 import * as jestPlugin from "eslint-plugin-jest";
+import globals from "globals";
 
 import { isUsingJest } from "@/utils";
 
@@ -10,6 +11,9 @@ export default (isUsingJest
         ...jestPlugin.configs["flat/recommended"],
         rules: {
           ...jestPlugin.configs["flat/recommended"].rules,
+        },
+        settings: {
+          global: globals.jest,
         },
       },
     ]

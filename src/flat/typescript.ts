@@ -40,14 +40,14 @@ export default config(
     languageOptions: {
       parserOptions: {
         project: true,
-        // warnOnUnsupportedTypeScriptVersion: true,
         tsconfigRootDir: process.cwd(),
+        warnOnUnsupportedTypeScriptVersion: true,
         // extraFileExtensions: [
         //   ".json"
         // ],
       },
     },
-    ignores: ["*.json", "*.ts"],
+    ignores: ["**/*.json"],
     rules: {
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/no-empty-interface": "off",
