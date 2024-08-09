@@ -47,7 +47,7 @@ export default config(
         // ],
       },
     },
-    ignores: ["**/*.json"],
+    ignores: ["**/*.json", "*.ts"],
     rules: {
       "@typescript-eslint/consistent-type-definitions": "off",
       "@typescript-eslint/no-empty-interface": "off",
