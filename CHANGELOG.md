@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.15
+
+### Patch Changes
+
+- release: add json file into ignore pattern
+
 ## 0.2.14
 
 ### Patch Changes
