@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.2.16
+
+### Patch Changes
+
+- chore: Ignore \*.ts for @typescript-eslint
+
 ## 0.2.15
 
 ### Patch Changes
