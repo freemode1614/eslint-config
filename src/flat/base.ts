@@ -1,4 +1,4 @@
-import type { Linter } from "eslint";
+import type * as eslint from "eslint";
 import compat from "eslint-plugin-compat";
 // TODO: Add import plugin, when flat config is office support
 // import * as importPlugin from "eslint-plugin-import";
@@ -11,9 +11,9 @@ import tailwind from "eslint-plugin-tailwindcss";
 import unicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 
-import { isESModule, isUsingTypescript } from "@/utils";
+import { isESModule } from "@/utils";
 
-const settings: Linter.Config["settings"] = {
+const settings: eslint.Linter.Config["settings"] = {
   // "import/parsers": {
   //   "@typescript-eslint/parser": [".ts", ".tsx"],
   // },
@@ -81,15 +81,20 @@ export default [
   isESModule
     ? n.configs["flat/recommended-module"]
     : n.configs["flat/recommended-script"],
-  isUsingTypescript
-    ? jsdoc.configs["flat/recommended-typescript"]
-    : jsdoc.configs["flat/recommended"],
+  {
+    ...jsdoc.configs["flat/recommended-typescript"],
+    files: ["*.ts", "*.tsx"],
+  },
+  {
+    ...jsdoc.configs["flat/recommended"],
+    files: ["*.js", "*.jsx"],
+  },
   prettier,
   ...tailwind.configs["flat/recommended"],
   {
     ignores: [
-      "**/*.{css,less,stylus,pcss}",
-      "**/*.d.ts",
+      "*.{css,less,stylus,pcss}",
+      "*.d.ts",
       "**/npm/**",
       "**/node_modules/**",
       "**/build/**",
@@ -97,4 +102,4 @@ export default [
       "**/temp/**",
     ],
   },
-] as Linter.FlatConfig[];
+] as eslint.Linter.FlatConfig[];
