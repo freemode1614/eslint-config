@@ -81,14 +81,8 @@ export default [
   isESModule
     ? n.configs["flat/recommended-module"]
     : n.configs["flat/recommended-script"],
-  {
-    ...jsdoc.configs["flat/recommended-typescript"],
-    files: ["*.ts", "*.tsx"],
-  },
-  {
-    ...jsdoc.configs["flat/recommended"],
-    files: ["*.js", "*.jsx"],
-  },
+  jsdoc.configs["flat/recommended-typescript"],
+  jsdoc.configs["flat/recommended"],
   prettier,
   ...tailwind.configs["flat/recommended"],
   {
