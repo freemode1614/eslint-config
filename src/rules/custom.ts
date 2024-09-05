@@ -52,7 +52,7 @@ export default {
         camelCase: true,
         pascalCase: true,
       },
-      ignore: [/API/, /JSON/, /^App/, /URL/, /TTS/, /STT/, /^@/, /^$/],
+      ignore: [/^App/, /^@/, /^\$/],
     },
   ],
   "unicorn/prefer-set-has": "warn",
