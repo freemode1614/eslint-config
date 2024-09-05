@@ -40,6 +40,8 @@ export default {
         resp: false,
         num: false,
         doc: false,
+        env: false,
+        envs: false,
       },
     },
   ],
