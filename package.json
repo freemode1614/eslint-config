@@ -62,7 +62,6 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.10.0",
     "pkg-types": "^1.2.0",
-    "typescript": "^5.5.4",
     "typescript-eslint": "^7.18.0"
   },
   "peerDependencies": {
