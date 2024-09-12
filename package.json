@@ -42,8 +42,8 @@
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-project-structure": "^2.3.1",
-    "eslint-plugin-react": "^7.35.2",
+    "eslint-plugin-project-structure": "^2.4.2",
+    "eslint-plugin-react": "^7.36.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.11",
     "eslint-plugin-simple-import-sort": "^12.1.1",
@@ -65,7 +65,7 @@
     "typescript-eslint": "^7.18.0"
   },
   "peerDependencies": {
-    "eslint": ">=7"
+    "eslint": "~9"
   },
   "peerDependenciesMeta": {
     "eslint": {
