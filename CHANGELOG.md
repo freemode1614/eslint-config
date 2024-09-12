@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.0
+
+### Minor Changes
+
+- Remove all ts code
+
 ## 0.2.16
 
 ### Patch Changes
