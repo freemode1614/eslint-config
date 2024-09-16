@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.3
+
+### Patch Changes
+
+- Update deps
+
 ## 0.3.2
 
 ### Patch Changes
