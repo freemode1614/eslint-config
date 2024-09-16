@@ -1,6 +1,6 @@
 {
   "name": "@moccona/eslint-config",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A simple eslint configuration",
   "main": "./index.js",
   "type": "module",
@@ -64,7 +64,7 @@
     "pkg-types": "^1.2.0"
   },
   "peerDependencies": {
-    "eslint": "~9"
+    "eslint": "9 || ^8.50"
   },
   "peerDependenciesMeta": {
     "eslint": {
