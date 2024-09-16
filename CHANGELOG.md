@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.2
+
+### Patch Changes
+
+- Add Missing Files
+
 ## 0.3.1
 
 ### Patch Changes
