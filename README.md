@@ -6,8 +6,7 @@ A simple eslint configuration
 
 ```js
 // eslint.config.js
-import config from "@moccona/eslint-config/flat";
-export default config;
+import { config as default} from "@moccona/eslint-config/flat";
 ```
 
 ## Legacy
@@ -17,8 +16,3 @@ export default config;
 const config = require("@moccona/eslint-config");
 module.exports = config;
 ```
-
-## Plugins that need to be added after support flat configuration
-
-- eslint-plugin-import
-  - eslint-plugin-resolver-typescript
