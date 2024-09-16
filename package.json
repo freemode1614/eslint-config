@@ -11,10 +11,10 @@
   "exports": {
     "./package.json": "./package.json",
     "./flat": {
-      "import": "./npm/flat.js"
+      "import": "./lib/flat.js"
     },
     ".": {
-      "import": "./npm/index.js"
+      "import": "./lib/index.js"
     }
   },
   "scripts": {
@@ -29,6 +29,7 @@
   "author": "wp.l",
   "license": "MIT",
   "dependencies": {
+    "@eslint/js": "^9.10.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint-config-prettier": "^9.1.0",
@@ -41,27 +42,26 @@
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-project-structure": "^2.4.2",
-    "eslint-plugin-react": "^7.36.0",
+    "eslint-plugin-project-structure": "^2.4.5",
+    "eslint-plugin-react": "^7.36.1",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.11",
+    "eslint-plugin-react-refresh": "^0.4.12",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "eslint-plugin-unicorn": "^54.0.0",
     "fs-extra": "^11.2.0",
     "globals": "^15.9.0",
-    "semver": "^7.6.3"
+    "semver": "^7.6.3",
+    "typescript-eslint": "^7.18.0"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.8",
-    "@eslint/js": "^9.10.0",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.16.5",
     "@types/semver": "^7.5.8",
     "cross-env": "^7.0.3",
     "eslint": "^9.10.0",
-    "pkg-types": "^1.2.0",
-    "typescript-eslint": "^7.18.0"
+    "pkg-types": "^1.2.0"
   },
   "peerDependencies": {
     "eslint": "~9"
