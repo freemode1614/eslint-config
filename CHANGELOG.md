@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.1
+
+### Patch Changes
+
+- Code enhance
+
 ## 0.3.0
 
 ### Minor Changes
