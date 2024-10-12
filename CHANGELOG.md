@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.7
+
+### Patch Changes
+
+- fix typescript-eslint error "include" not include config file
+
 ## 0.3.6
 
 ### Patch Changes

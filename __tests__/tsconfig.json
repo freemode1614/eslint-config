@@ -5,4 +5,7 @@
     "target": "ES6",
     "moduleResolution": "Bundler"
   },
+  "include": [
+    "files"
+  ]
 }
