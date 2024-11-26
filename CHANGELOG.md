@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.8
+
+### Patch Changes
+
+- Upgrade typescript-eslint to 8.16
+
 ## 0.3.7
 
 ### Patch Changes
