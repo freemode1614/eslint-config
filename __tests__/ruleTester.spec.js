@@ -17,7 +17,7 @@ describe("Rule set test case", () => {
     () => {
       process.chdir("__tests__");
       lint = new ESLint({
-        cwd: process.cwd()
+        cwd: process.cwd(),
       });
     }
   )
