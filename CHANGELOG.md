@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.9
+
+### Patch Changes
+
+- fix: remove jest plugin when there is no jest dependence
+
 ## 0.3.8
 
 ### Patch Changes
