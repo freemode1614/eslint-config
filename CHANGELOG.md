@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.10
+
+### Patch Changes
+
+- Fix typescript customize rule is not working
+
 ## 0.3.9
 
 ### Patch Changes
