@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.3.12
+
+### Patch Changes
+
+- Split prettier plugin & iupdate deps
+
 ## 0.3.10
 
 ### Patch Changes
