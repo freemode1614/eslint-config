@@ -1,5 +1,5 @@
 import type { Linter } from "eslint";
-declare type Config = Linter.LegacyConfig
+declare type Config = Linter.LegacyConfig;
 
 export let config: Config;
 export let basic: Config;
