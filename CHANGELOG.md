@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.4.0
+
+### Minor Changes
+
+- Add new dep for testing-library
+
 ## 0.3.12
 
 ### Patch Changes
