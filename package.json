@@ -10,8 +10,9 @@
   },
   "exports": {
     "./package.json": "./package.json",
-    "./flat": {
-      "import": "./lib/flat.js"
+    "./flat/*": {
+      "types": "./lib/flat/*.d.ts",
+      "import": "./lib/flat/*.js"
     },
     ".": {
       "import": "./lib/index.js"
@@ -79,3 +80,4 @@
   },
   "packageManager": "pnpm@9.7.1"
 }
+
