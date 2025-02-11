@@ -1,22 +1,23 @@
+// @ts-nocheck
+// @
 
 import { type Plugin, mergeConfig, ServerOptions } from "vite";
 
 import { type OpenAPIOptions, openAPIs } from ".";
 
-
 /**
  * Good
  **/
 const configureDevServer = (
-  server: ServerOptions, customServer: ServerOptions
+  server: ServerOptions,
+  customServer: ServerOptions
 ): ServerOptions => {
   return mergeConfig<ServerOptions, ServerOptions>(server, {
     open: true,
     strictPort: true,
-    ...customServer
-  })
-}
-
+    ...customServer,
+  });
+};
 
 /**
  * @example
@@ -27,8 +28,8 @@ const configureDevServer = (
  *
  */
 export type Clients = {
-  [mode: string]: (OpenAPIOptions & { proxy: ServerOptions['proxy'] })[]
-}
+  [mode: string]: (OpenAPIOptions & { proxy: ServerOptions["proxy"] })[];
+};
 
 /**
  *
@@ -37,7 +38,7 @@ export type Clients = {
  */
 export default function openapi(clientsOptionsByMode: Clients): Plugin {
   let firstRun = true;
-  let clients: OpenAPIOptions[]
+  let clients: OpenAPIOptions[];
 
   return {
     name: "openapi-generator",
@@ -45,17 +46,17 @@ export default function openapi(clientsOptionsByMode: Clients): Plugin {
       order: "pre",
       async handler(config, env) {
         const mode = env.mode;
-        clients = clientsOptionsByMode[mode] ?? []
+        clients = clientsOptionsByMode[mode] ?? [];
         const server = config.server ?? {};
-        const proxies = clients.reduce((acc, client) => ({ ...acc, ...client }), {}) as NonNullable<ServerOptions["proxy"]>
+        const proxies = clients.reduce(
+          (acc, client) => ({ ...acc, ...client }),
+          {}
+        ) as NonNullable<ServerOptions["proxy"]>;
 
         return {
           ...config,
-          server: configureDevServer(
-            { proxy: proxies },
-            server,
-          )
-        }
+          server: configureDevServer({ proxy: proxies }, server),
+        };
       },
     },
     async buildStart() {
@@ -65,7 +66,6 @@ export default function openapi(clientsOptionsByMode: Clients): Plugin {
           await openAPIs(clients);
         }
       }
-    }
+    },
   };
 }
-

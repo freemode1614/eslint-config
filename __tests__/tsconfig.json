@@ -1,11 +1,6 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "module": "ESNext",
-    "target": "ES6",
-    "moduleResolution": "Bundler"
-  },
+  "extends": "@moccona/preset-config/tsconfig/node.json",
   "include": [
-    "files"
+    "files/**/*.ts"
   ]
 }

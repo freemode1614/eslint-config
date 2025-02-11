@@ -54,8 +54,8 @@ importers:
         specifier: ^7.37.4
         version: 7.37.4(eslint@9.19.0(jiti@1.21.7))
       eslint-plugin-react-compiler:
-        specifier: 19.0.0-beta-decd7b8-20250118
-        version: 19.0.0-beta-decd7b8-20250118(eslint@9.19.0(jiti@1.21.7))
+        specifier: 19.0.0-beta-714736e-20250131
+        version: 19.0.0-beta-714736e-20250131(eslint@9.19.0(jiti@1.21.7))
       eslint-plugin-react-hooks:
         specifier: ^5.1.0
         version: 5.1.0(eslint@9.19.0(jiti@1.21.7))
@@ -90,6 +90,9 @@ importers:
       '@changesets/cli':
         specifier: ^2.27.12
         version: 2.27.12
+      '@moccona/preset-config':
+        specifier: ^0.0.5
+        version: 0.0.5
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -521,6 +524,9 @@ packages:
 
   '@mdn/browser-compat-data@5.6.35':
     resolution: {integrity: sha512-ag7tX/vba+g1OVelqrcdUPnao+Fio0YgcIUYs07qoV3escMAqF7sNKSHH8JxXQ0psY3u8l8jqmmGx0vFPtIrtw==}
+
+  '@moccona/preset-config@0.0.5':
+    resolution: {integrity: sha512-U/d7uxglfdOGUBVG5Q91LA09Qe6zT2zQpnTskNuKOZuup0qFxp01CJFha4RW0hQPmBAeltUeVWVDB3bsrxtYDQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1294,8 +1300,8 @@ packages:
     resolution: {integrity: sha512-wJJcN8Zm/M4n7rjrENlgk1IQHL51IXqTrZrW22UTKzXBhptp69OCUVnkKcNUBQuWV1xkCcMu0r+mE5Ki2PzbzQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  eslint-plugin-react-compiler@19.0.0-beta-decd7b8-20250118:
-    resolution: {integrity: sha512-qfs+Xo+VcYPbbVLI2tCP+KBGwm0oksAhjFJO1GwOvP+4b18LLcPZu7xopRhUTOaNd+nn1vOp9EQLZC1wMNxSrQ==}
+  eslint-plugin-react-compiler@19.0.0-beta-714736e-20250131:
+    resolution: {integrity: sha512-iTPUaHzvBejGqicSwZLCDBgWBxLzU1Dvqjs31loNoOPRnsey5dcOupaZajECKVvXmB1wcbIWNp6/VR5+dM9d6w==}
     engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
       eslint: '>=7'
@@ -3166,6 +3172,8 @@ snapshots:
 
   '@mdn/browser-compat-data@5.6.35': {}
 
+  '@moccona/preset-config@0.0.5': {}
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -4073,7 +4081,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-react-compiler@19.0.0-beta-decd7b8-20250118(eslint@9.19.0(jiti@1.21.7)):
+  eslint-plugin-react-compiler@19.0.0-beta-714736e-20250131(eslint@9.19.0(jiti@1.21.7)):
     dependencies:
       '@babel/core': 7.26.7
       '@babel/parser': 7.26.7
