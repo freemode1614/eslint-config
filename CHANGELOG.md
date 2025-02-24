@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.4.2
+
+### Patch Changes
+
+- Fix error when using node/react config
+
 ## 0.4.1
 
 ### Patch Changes
