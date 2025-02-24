@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.4.1
+
+### Patch Changes
+
+- Minor rule update
+
 ## 0.4.0
 
 ### Minor Changes
