@@ -27,15 +27,15 @@ describe("Rule set test case", () => {
     expect(lintResults).not.toBeNull();
   });
 
-  // test(`Load and lint jsx`, async () => {
-  //   const lintResults = await lint?.lintFiles("./files/javascript.react.jsx");
-  //   expect(lintResults).not.toBeNull();
-  // });
+  test(`Load and lint jsx`, async () => {
+    const lintResults = await lint?.lintFiles("./files/javascript.react.jsx");
+    expect(lintResults).not.toBeNull();
+  });
 
-  // test(`Load and lint js`, async () => {
-  //   const lintResults = await lint?.lintFiles("./files/javascript.js");
-  //   expect(lintResults).not.toBeNull();
-  // });
+  test(`Load and lint js`, async () => {
+    const lintResults = await lint?.lintFiles("./files/javascript.js");
+    expect(lintResults).not.toBeNull();
+  });
 
   test(`Load and lint ts`, async () => {
     const lintResults = await lint?.lintFiles("./files/typescript.ts");
