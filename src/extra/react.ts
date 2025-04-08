@@ -62,6 +62,9 @@ export default [
               "errorElement",
               "ErrorBoundary",
               "shouldRevalidate", // Using this API risks your UI getting out of sync with your data, use with caution!
+              "meta",
+              "links",
+              "headers"
             ],
           },
         ],
