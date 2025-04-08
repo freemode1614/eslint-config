@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 1.0.2
+
+### Patch Changes
+
+- Little upgrade
+
 ## 1.0.1
 
 ### Patch Changes
