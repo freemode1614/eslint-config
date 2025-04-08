@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 1.0.0
+
+### Major Changes
+
+- 0749107: release: Into v1, all API are fixed now.
+
 ## 0.4.2
 
 ### Patch Changes
