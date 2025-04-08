@@ -27,7 +27,7 @@
     "dev": "tsc --watch",
     "build": "rimraf ./dist && tsc",
     "test": "cross-env NODE_ENV=production vitest --watch false",
-    "prepublishOnly": "pnpm test"
+    "prepublishOnly": "pnpm build && pnpm test"
   },
   "keywords": [
     "eslint",
