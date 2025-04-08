@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 1.0.1
+
+### Patch Changes
+
+- Add missing logger package
+
 ## 1.0.0
 
 ### Major Changes
