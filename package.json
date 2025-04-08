@@ -10,10 +10,6 @@
   },
   "exports": {
     "./package.json": "./package.json",
-    "./flat": {
-      "types": "./dist/flat.d.ts",
-      "import": "./dist/flat.js"
-    },
     "./legacy": {
       "types": "./dist/legacy.d.ts",
       "import": "./dist/legacy.js"
@@ -21,6 +17,10 @@
     "./extra/*": {
       "types": "./dist/extra/*.d.ts",
       "import": "./dist/extra/*.js"
+    },
+    ".": {
+      "types": "./dist/flat.d.ts",
+      "import": "./dist/flat.js"
     }
   },
   "scripts": {

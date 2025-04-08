@@ -1,6 +1,6 @@
+import type { Linter } from "eslint";
 import globals from "globals";
 import tseslint, { parser } from "typescript-eslint";
-import type { Linter } from "eslint";
 
 export default [
   ...tseslint.configs.recommendedTypeChecked,

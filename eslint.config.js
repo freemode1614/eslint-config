@@ -8,8 +8,8 @@ import config from "./dist/flat.js"
 export default [
     ...config,
     ...typescript,
-    ...prettier,
     {
         ignores: ["dist"]
-    }
+    },
+    ...prettier,
 ]
