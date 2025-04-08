@@ -16,6 +16,7 @@ export default [
     files: ["**/*.tsx", "**/*.jsx"],
     settings: {
       react: { version: "detect" },
+      polyfills: ["Promise", "fetch"]
     },
     languageOptions: {
       parser: tsParser,
