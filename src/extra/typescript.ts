@@ -1,18 +1,9 @@
 import globals from "globals";
 import tseslint, { parser } from "typescript-eslint";
+import type { Linter } from "eslint";
 
-/**
- * @type {import("eslint").Linter.Config[]}
- */
-export const commonTsConfig = [
-  ...tseslint.configs.recommendedTypeChecked,
-];
-
-/**
- * @type {import("eslint").Linter.Config[]}
- */
 export default [
-  ...commonTsConfig,
+  ...tseslint.configs.recommendedTypeChecked,
   {
     languageOptions: {
       parser,
@@ -21,7 +12,7 @@ export default [
       },
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["*.js", "*.ts"]
+          allowDefaultProject: ["*.js", "*.jsx", "*.ts", "*.tsx"]
         },
         ecmaVersion: "latest",
         ecmaFeatures: {
@@ -50,4 +41,4 @@ export default [
       ],
     },
   },
-];
+] as Linter.Config[];

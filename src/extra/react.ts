@@ -1,5 +1,5 @@
-// Config for react code
-
+import type { Linter } from "eslint";
+import compat from "eslint-plugin-compat";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import react from "eslint-plugin-react";
 import reactCompiler from "eslint-plugin-react-compiler";
@@ -8,12 +8,8 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
 import { parser as tsParser } from "typescript-eslint";
 
-import Env from "../env.js";
-import { commonTsConfig } from "./typescript.js";
+import * as Env from "../env.js";
 
-/**
- * @type {import("eslint").Linter.Config[]}
- */
 export default [
   {
     files: ["**/*.tsx", "**/*.jsx"],
@@ -30,7 +26,7 @@ export default [
       parserOptions: {
         ecmaVersion: "latest",
         projectService: true,
-        project: Env.tsconfigPath,
+        project: Env.projects,
         ecmaFeatures: {
           jsx: true,
           experimentalObjectRestSpread: true,
@@ -45,12 +41,12 @@ export default [
       "react-refresh": reactRefresh,
       "react-compiler": reactCompiler,
     },
-    rules: Object.assign(
-      react.configs.recommended.rules,
-      reactHooks.configs.recommended.rules,
-      jsxA11y.configs.recommended.rules,
-      Env.usingJsxRuntime ? react.configs["jsx-runtime"].rules : {},
-      {
+    rules: {
+      ...react.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      ...jsxA11y.configs.recommended.rules,
+      ...(Env.usingJsxRuntime() ? react.configs["jsx-runtime"].rules : {}),
+      ...{
         "react-refresh/only-export-components": [
           "error",
           {
@@ -69,8 +65,8 @@ export default [
           },
         ],
         "react-compiler/react-compiler": "error",
-      }
-    ),
+      },
+    },
   },
-  ...commonTsConfig,
-];
+  compat.configs["flat/recommended"],
+] as Linter.Config[];

@@ -1,15 +1,34 @@
 import eslint from "@eslint/js";
+import {
+  createScopedLogger
+} from "@moccona/logger";
+import type { Linter } from "eslint";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
 import { projectStructurePlugin } from "eslint-plugin-project-structure";
 import importSort from "eslint-plugin-simple-import-sort";
 import unicorn from "eslint-plugin-unicorn";
 
-import Env from "../env.js";
+import * as env from "./env.js"
 
-/**
- * @type {import("eslint").Linter.Config[]}
- */
+const logger = createScopedLogger("eslint");
+
+logger.info(
+  '---------------------------'
+)
+
+logger.info("Using Esmodule", env.usingEsmodule())
+logger.info("Using Jest", env.usingJest())
+logger.info("Using JsxRuntime", env.usingJsxRuntime())
+logger.info("Using Prettier", env.usingPrettier())
+logger.info("Using React", env.usingReact())
+logger.info("Using Typescript", env.usingTypescript())
+logger.info("Using Vitest", env.usingVitest())
+
+logger.info(
+  '---------------------------'
+)
+
 export default [
   eslint.configs["recommended"],
   {
@@ -35,7 +54,8 @@ export default [
       "simple-import-sort/exports": "error",
 
       // UNICORN
-      "unicorn/prefer-module": Env.usingEsmodule ? "error" : "off",
+      // "unicorn/prefer-module": Env.usingEsmodule ? "error" : "off",
+      "unicorn/prefer-module": "off",
       "unicorn/switch-case-braces": "off",
       "unicorn/prevent-abbreviations": [
         "warn",
@@ -103,8 +123,7 @@ export default [
       "unicorn/import-style": ["warn"],
       "unicorn/prefer-spread": "warn",
       "unicorn/no-for-loop": "warn",
-      "unicorn/no-null": Env.usingReact ? "off" : "warn",
-
+      "unicorn/no-null": "off",
       // TODO: PROJECT STRUCTURE
       // "project-structure/folder-structure": ["error", folderStructureConfig],
       // "project-structure/independent-modules": [
@@ -114,4 +133,4 @@ export default [
       // "project-structure/naming-rules": ["error", namingRulesConfig],
     },
   },
-];
+] as Linter.Config[];
