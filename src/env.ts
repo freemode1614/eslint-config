@@ -41,4 +41,4 @@ export const usingJest = () => "jest" in deps();
 export const usingVitest = () => "vitest" in deps();
 
 export const usingJsxRuntime = () =>
-  usingPrettier() && semver.gt(deps().react ?? "0.0.0", "17.0.0");
+  usingPrettier() && semver.gt(semver.coerce(deps()?.react ?? "") ?? "0.0.0", "17.0.0");
