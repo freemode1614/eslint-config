@@ -1,6 +1,6 @@
 # @moccona/eslint-config
 
-## 0.4.1
+## 1.0.4
 
 ### Patch Changes
 
