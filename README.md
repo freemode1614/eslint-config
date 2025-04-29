@@ -6,13 +6,5 @@ A simple eslint configuration
 
 ```js
 // eslint.config.js
-import { config as default} from "@moccona/eslint-config/flat";
-```
-
-## Legacy
-
-```js
-// .eslintrc.js
-const config = require("@moccona/eslint-config");
-module.exports = config;
+import default from "@moccona/eslint-config/flat/node";
 ```
