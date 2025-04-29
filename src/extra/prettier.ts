@@ -1,6 +1,5 @@
 import prettierPlugin from "eslint-plugin-prettier/recommended";
 
-import * as utils from "../env.js";
+import * as utilities from "../env.js";
 
-export default utils.usingPrettier() ? [] : [prettierPlugin];
-
+export default utilities.usingPrettier() ? [] : [prettierPlugin];
