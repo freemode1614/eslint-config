@@ -12,8 +12,9 @@ export default [
       },
       parserOptions: {
         projectService: {
-          allowDefaultProject: ["*.js", "*.jsx", "*.ts", "*.tsx"]
+          allowDefaultProject: ["*.js", "*.json"],
         },
+        extraFileExtensions: [".json", ".css"],
         ecmaVersion: "latest",
         ecmaFeatures: {
           experimentalObjectRestSpread: true,

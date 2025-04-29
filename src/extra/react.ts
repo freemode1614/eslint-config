@@ -10,13 +10,12 @@ import { parser as tsParser } from "typescript-eslint";
 
 import * as Env from "../env.js";
 
-
 export default [
   {
     files: ["**/*.tsx", "**/*.jsx"],
     settings: {
       react: { version: "detect" },
-      polyfills: ["Promise", "fetch"]
+      polyfills: ["Promise", "fetch"],
     },
     languageOptions: {
       parser: tsParser,
@@ -65,7 +64,7 @@ export default [
               "shouldRevalidate", // Using this API risks your UI getting out of sync with your data, use with caution!
               "meta",
               "links",
-              "headers"
+              "headers",
             ],
           },
         ],
