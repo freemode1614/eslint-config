@@ -1,5 +1,41 @@
 # @moccona/eslint-config
 
+## 1.0.3
+
+### Patch Changes
+
+- Fix rule issue
+
+## 1.0.2
+
+### Patch Changes
+
+- Little upgrade
+
+## 1.0.1
+
+### Patch Changes
+
+- Add missing logger package
+
+## 1.0.0
+
+### Major Changes
+
+- 0749107: release: Into v1, all API are fixed now.
+
+## 0.4.2
+
+### Patch Changes
+
+- Fix error when using node/react config
+
+## 0.4.1
+
+### Patch Changes
+
+- Minor rule update
+
 ## 0.4.0
 
 ### Minor Changes

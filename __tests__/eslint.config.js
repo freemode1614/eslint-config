@@ -1,1 +1,1 @@
-export { default } from "../lib/flat/node.js";
+export { default } from "../dist/flat.js";

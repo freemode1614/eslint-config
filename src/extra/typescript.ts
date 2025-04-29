@@ -1,37 +1,20 @@
+import type { Linter } from "eslint";
 import globals from "globals";
 import tseslint, { parser } from "typescript-eslint";
 
-import Env from "../env.js";
-
-/**
- * @type {import("eslint").Linter.Config[]}
- */
-export const commonTsConfig = [
-  ...tseslint.configs.strictTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
+export default [
   ...tseslint.configs.recommendedTypeChecked,
   {
-    files: ["*.json", "*.js"],
-    ...tseslint.configs.disableTypeChecked,
-  },
-];
-
-/**
- * @type {import("eslint").Linter.Config[]}
- */
-export default [
-  ...commonTsConfig,
-  {
-    files: ["**/*.ts"],
     languageOptions: {
       parser,
       globals: {
         ...globals.node,
       },
       parserOptions: {
-        ecmaVersion: "latest",
-        projectService: true,
-        project: Env.tsconfigPath,
+        projectService: {
+          allowDefaultProject: ["*.js", "*.json"],
+        },
+        extraFileExtensions: [".json", ".css"],
         ecmaVersion: "latest",
         ecmaFeatures: {
           experimentalObjectRestSpread: true,
@@ -59,4 +42,4 @@ export default [
       ],
     },
   },
-];
+] as Linter.Config[];

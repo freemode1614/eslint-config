@@ -1,31 +1,35 @@
 import eslint from "@eslint/js";
+import {
+  createScopedLogger
+} from "@moccona/logger";
+import type { Linter } from "eslint";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsonc from "eslint-plugin-jsonc";
 import { projectStructurePlugin } from "eslint-plugin-project-structure";
 import importSort from "eslint-plugin-simple-import-sort";
 import unicorn from "eslint-plugin-unicorn";
-import globals from "globals";
 
-import Env from "../env.js";
+import * as env from "./env.js"
 
-/**
- * @type {import("eslint").Linter.Config[]}
- */
+const logger = createScopedLogger("eslint");
+
+logger.info(
+  '---------------------------'
+)
+
+logger.info("Using Esmodule", env.usingEsmodule())
+logger.info("Using Jest", env.usingJest())
+logger.info("Using JsxRuntime", env.usingJsxRuntime())
+logger.info("Using Prettier", env.usingPrettier())
+logger.info("Using React", env.usingReact())
+logger.info("Using Typescript", env.usingTypescript())
+logger.info("Using Vitest", env.usingVitest())
+
+logger.info(
+  '---------------------------'
+)
+
 export default [
-  {
-    languageOptions: {
-      globals: {
-        ...globals.node,
-        ...globals.builtin,
-        ...globals.commonjs,
-      },
-    },
-    plugins: {
-      unicorn,
-      "simple-import-sort": importSort,
-      "project-structure": projectStructurePlugin,
-    },
-  },
   eslint.configs["recommended"],
   {
     ...jsdoc.configs["flat/recommended"],
@@ -37,13 +41,21 @@ export default [
   },
   ...jsonc.configs["flat/recommended-with-jsonc"],
   {
+    plugins: {
+      unicorn,
+      "simple-import-sort": importSort,
+      "project-structure": projectStructurePlugin,
+    },
+  },
+  {
     rules: {
       // IMPORT-SORT
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
 
       // UNICORN
-      "unicorn/prefer-module": Env.usingEsmodule ? "error" : "off",
+      // "unicorn/prefer-module": Env.usingEsmodule ? "error" : "off",
+      "unicorn/prefer-module": "off",
       "unicorn/switch-case-braces": "off",
       "unicorn/prevent-abbreviations": [
         "warn",
@@ -98,6 +110,8 @@ export default [
           cases: {
             camelCase: true,
             pascalCase: true,
+            kebabCase: true,
+            snakeCase: false
           },
           ignore: [/^App/, /^@/, /^\$/],
         },
@@ -111,8 +125,7 @@ export default [
       "unicorn/import-style": ["warn"],
       "unicorn/prefer-spread": "warn",
       "unicorn/no-for-loop": "warn",
-      "unicorn/no-null": Env.usingReact ? "off" : "warn",
-
+      "unicorn/no-null": "off",
       // TODO: PROJECT STRUCTURE
       // "project-structure/folder-structure": ["error", folderStructureConfig],
       // "project-structure/independent-modules": [
@@ -122,4 +135,4 @@ export default [
       // "project-structure/naming-rules": ["error", namingRulesConfig],
     },
   },
-];
+] as Linter.Config[];
