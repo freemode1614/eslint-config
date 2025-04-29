@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 0.4.1
+
+### Patch Changes
+
+- Fix projectService issues in vite react project
+
 ## 1.0.3
 
 ### Patch Changes
