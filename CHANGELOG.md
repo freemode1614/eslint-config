@@ -1,5 +1,11 @@
 # @moccona/eslint-config
 
+## 1.0.5
+
+### Patch Changes
+
+- Fix exports error
+
 ## 1.0.4
 
 ### Patch Changes
