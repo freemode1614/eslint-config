@@ -75,7 +75,7 @@
     "vitest": "^3.1.2"
   },
   "peerDependencies": {
-    "eslint": "^9 || ^8.23"
+    "eslint": "^9"
   },
   "peerDependenciesMeta": {
     "eslint": {

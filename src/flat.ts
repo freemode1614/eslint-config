@@ -51,55 +51,7 @@ export default [
       // "unicorn/prefer-module": Env.usingEsmodule ? "error" : "off",
       "unicorn/prefer-module": "off",
       "unicorn/switch-case-braces": "off",
-      "unicorn/prevent-abbreviations": [
-        "warn",
-        {
-          replacements: {
-            // reference
-            useRef: false,
-            ref: false,
-            // properties
-            prop: false,
-            props: false,
-            // directory
-            dir: false,
-            // message
-            msg: false,
-            msgs: false,
-            // development
-            dev: false,
-            // production
-            prod: false,
-            // arguments
-            args: false,
-            // request
-            req: false,
-            // response
-            resp: false,
-            // numbers
-            num: false,
-            nums: false,
-            // documents
-            doc: false,
-            docs: false,
-            // enviroments
-            env: false,
-            envs: false,
-            // function
-            fn: false,
-            func: false,
-            // error
-            err: false,
-            // event
-            e: false,
-            ev: false,
-            // accumulator
-            acc: false,
-            util: false,
-            utils: false,
-          },
-        },
-      ],
+      "unicorn/prevent-abbreviations": ["off"],
       "unicorn/filename-case": [
         "warn",
         {
