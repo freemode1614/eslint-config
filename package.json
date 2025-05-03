@@ -10,12 +10,12 @@
   },
   "exports": {
     "./package.json": "./package.json",
-    "./flat/*": {
-      "types": "./lib/flat/*.d.ts",
-      "import": "./lib/flat/*.js"
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
     },
     ".": {
-      "import": "./lib/index.js"
+      "import": "./dist/flat.js"
     }
   },
   "scripts": {
