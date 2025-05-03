@@ -95,6 +95,8 @@ export default [
             ev: false,
             // accumulator
             acc: false,
+            util: false,
+            utils: false,
           },
         },
       ],
