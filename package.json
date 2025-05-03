@@ -15,7 +15,8 @@
       "import": "./dist/*.js"
     },
     ".": {
-      "import": "./dist/flat.js"
+      "import": "./dist/flat.js",
+      "types": "./dist/flat.d.js"
     }
   },
   "scripts": {
